@@ -29,6 +29,12 @@ script:
   
 after_success:
   - bash scripts/deploy.sh
+  - chmod +x scripts/send.sh
+  - .scripts/send.sh success $WEBHOOK_URL
+
+after_failure:
+  - chmod +x scripts/send.sh
+  - .scripts/send.sh failure $WEBHOOK_URL
 
 cache: pip
 
