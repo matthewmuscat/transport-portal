@@ -1,0 +1,30 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask = "*"
+rethinkdb = "*"
+requests = "*"
+gunicorn = "*"
+
+[dev-packages]
+"flake8" = "*"
+"flake8-import-order" = "*"
+"Flask-Testing" = "*"
+"pytest" = "*"
+"pytest-cov" = "*"
+
+[requires]
+python_version = "3.6"
+
+[scripts]
+start     = "gunicorn -w 12 -b 0.0.0.0:80 -c scripts/gunicorn_config.py portal:app"
+lint      = "python -m flake8"
+test      = "py.test app_test.py --cov portal --cov-report term-missing -v"
+clean     = "rm -rf __pycache__ htmlcov .coverage .pytest_cache"
+build     = "docker build -t heavysaturn/transport-portal:latest -f docker/Dockerfile ."
+push      = "docker push heavysaturn/transport-portal:latest"
+buildbase = "docker build -t heavysaturn/transport-portal-base:latest -f docker/Dockerfile.base ."
+pushbase  = "docker push heavysaturn/transport-portal-base:latest"
