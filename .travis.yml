@@ -30,11 +30,11 @@ script:
 after_success:
   - bash scripts/deploy.sh
   - chmod +x scripts/discord_webhook.sh
-  - ./scripts/discord_webhook.sh success $WEBHOOK_URL
+  - ./scripts/discord_webhook.sh success $DISCORD_WEBHOOK_URL
 
 after_failure:
   - chmod +x scripts/discord_webhook.sh
-  - ./scripts/discord_webhook.sh failure $WEBHOOK_URL
+  - ./scripts/discord_webhook.sh failure $DISCORD_WEBHOOK_URL
 
 cache: pip
 
