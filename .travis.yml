@@ -25,16 +25,16 @@ install:
 
 script:
   - pipenv run lint
-  - pipenv run test
+# - pipenv run test
   
 after_success:
   - bash scripts/deploy.sh
-  - chmod +x scripts/send.sh
-  - .scripts/send.sh success $WEBHOOK_URL
+  - chmod +x scripts/discord_webhook.sh
+  - ./scripts/discord_webhook.sh success $WEBHOOK_URL
 
 after_failure:
-  - chmod +x scripts/send.sh
-  - .scripts/send.sh failure $WEBHOOK_URL
+  - chmod +x scripts/discord_webhook.sh
+  - ./scripts/discord_webhook.sh failure $WEBHOOK_URL
 
 cache: pip
 
