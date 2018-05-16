@@ -1,21 +1,16 @@
 FROM heavysaturn/transport-portal-base:latest
 
-ENV PIPENV_VENV_IN_PROJECT=1
-ENV PIPENV_IGNORE_VIRTUALENVS=1
-ENV PIPENV_NOSPIN=1
-ENV PIPENV_HIDE_EMOJIS=1
-
-RUN pip install pipenv
-
-RUN mkdir -p /portal
+# Move the new files into the right folder
 COPY . /portal
 WORKDIR /portal
-ENV PYTHONPATH=/portal
 
+# Set up the virtual environment
 RUN pipenv clean
 RUN pipenv sync
 
-EXPOSE 10012
+# Open the port that nginx will communicate through
+EXPOSE 10013
 
+# Make tini the default command handler, and run the pipenv script called start.
 ENTRYPOINT ["/sbin/tini", "--"]
 CMD ["pipenv", "run", "start"]
