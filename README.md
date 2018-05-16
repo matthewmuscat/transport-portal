@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/1mn/transport-portal.svg?branch=master)](https://travis-ci.org/1mn/transport-portal)
 # transport-portal
 A Python / Flask webportal for transport companies. Used for managing vehicles, employees, creating timesheets, and setting up automatic SMS and email notifications when license plates or drivers licenses are about to expire.
 
