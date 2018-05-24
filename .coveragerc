@@ -1,2 +1,2 @@
 [run]
-omit = /usr/*, scripts/*
+omit = /usr/*, scripts/*, portal/gunicorn_config.py

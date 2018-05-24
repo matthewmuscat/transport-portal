@@ -8,6 +8,10 @@ flask = "*"
 rethinkdb = "*"
 requests = "*"
 gunicorn = "*"
+pony = "*"
+flask-security = "*"
+"psycopg2-binary" = "*"
+bcrypt = "*"
 
 [dev-packages]
 "flake8" = "*"

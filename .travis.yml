@@ -25,7 +25,7 @@ install:
 
 script:
   - pipenv run lint
-# - pipenv run test
+  - pipenv run test
   
 after_success:
   - bash scripts/deploy.sh
