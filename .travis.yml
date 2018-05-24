@@ -3,7 +3,7 @@ python:
   - "3.6"
 
 addons:
-  rethinkdb: "2.3"
+  postgresql: "9.6"
 
 branches:
   only:
