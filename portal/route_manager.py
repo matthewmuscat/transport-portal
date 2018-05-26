@@ -3,56 +3,45 @@ import inspect
 import logging
 import os
 
-from flask import Blueprint, Flask, _request_ctx_stack
-from flask_security import PonyUserDatastore, Security
+from flask import Blueprint
+from flask_security import SQLAlchemyUserDatastore, Security
 
+from portal import create_app, db
 from portal.base_routes import BaseView, ErrorView, RedirectView, RouteView, TemplateView
 from portal.config import configs
 from portal.constants import PREFERRED_URL_SCHEME
-from portal.models import Role, User, security_db, get_database
-
-TEMPLATES_PATH = "templates"
-STATIC_PATH = "static"
+from portal.models import Role, User
 
 
 class RouteManager:
     def __init__(self):
 
         # Set up the app and the database
-        self.app = Flask(
-            __name__,
-            static_folder=STATIC_PATH,
-            template_folder=TEMPLATES_PATH,
-            static_url_path="/static",
-        )
+        self.app = create_app()
 
-        # configure the app
+        # configure the app - We should handle this in create_app, and use the config objects like in flasky
+        self.config = configs["prod"]  # Discover this based on domain name
         self.app.config['DEBUG'] = True
         self.app.config['SECRET_KEY'] = 'super-secret'
         self.app.config['SECURITY_PASSWORD_HASH'] = 'bcrypt'
         self.app.config['SECURITY_PASSWORD_SALT'] = os.environ.get("SECURITY_PASSWORD_SALT")
         self.app.config["PREFERRED_URL_SCHEME"] = PREFERRED_URL_SCHEME
+        
+        # Set up SQLAlchemy binds
+        postgres_uri = f"postgres://{self.config.PSQL_USER}:{self.config.PSQL_PASS}@{self.config.PSQL_HOST}"
+        self.app.config["SQLALCHEMY_DATABASE_URI"] = f"{postgres_uri}/portal"
+        self.app.config["SQLALCHEMY_BINDS"] = {
+            "kpm_transport": f"{postgres_uri}/kpm_portal",
+            "mr_transport": f"{postgres_uri}/mr_portal"
+        }
 
         # Set up the database stuff
         self.db = db
-        self.config = configs["prod"]  # Discover this based on domain name
-        provider = "postgres"
-        user = os.environ.get("PSQL_USER")
-        host = os.environ.get("PSQL_HOST")
-        password = os.environ.get("PSQL_PASS")
-        database = os.environ.get("PSQL_DB")
-        self.db.bind(
-            provider='postgres',
-            user=self.config.PSQL_USER,
-            password=self.config.PSQL_PASS,
-            host=self.config.PSQL_HOST,
-            database=self.config.PSQL_DB,
-        )
-        self.db.generate_mapping()
+        self.db.init_app(self.app)
 
         # Set up Flask-Security
-        self.user_datastore = PonyUserDatastore(db, User, Role)
-        self.security = Security(self.app, self.user_datastore)
+        user_datastore = SQLAlchemyUserDatastore(db, User, Role)
+        Security(self.app, user_datastore)
 
         # Set up the logging
         self.log = logging.getLogger(__name__)
@@ -63,17 +52,6 @@ class RouteManager:
         self.load_views(self.main_blueprint, "portal/views")
         self.app.register_blueprint(self.main_blueprint)
         self.log.debug("")
-
-        self.app.before_request(self.https_fixing_hook)  # Try to fix HTTPS issues
-
-    def https_fixing_hook(self):
-        """
-        Attempt to fix HTTPS issues by modifying the request context stack
-        """
-
-        if _request_ctx_stack is not None:
-            req_ctx = _request_ctx_stack.top
-            req_ctx.url_adapter.url_scheme = PREFERRED_URL_SCHEME
 
     def run(self):
         self.app.run(port=8080)
