@@ -2,7 +2,7 @@ import os
 
 from flask_testing import TestCase
 
-from app import manager
+from portal import manager
 
 # Some unit tests fail if this is set
 if "FLASK_DEBUG" in os.environ:
