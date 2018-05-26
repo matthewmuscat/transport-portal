@@ -1,11 +1,22 @@
-import os
+from os import environ
+
+from flask_migrate import Migrate, upgrade, migrate
 
 from portal.route_manager import RouteManager
 
+# Set up the app and the database
 manager = RouteManager()
 app = manager.app
+db = manager.db
+Migrate(app, db)
 
-debug = os.environ.get('FLASK_DEBUG')
+# Migrate and create tables
+with app.app_context():
+    migrate()
+    upgrade()
+
+#
+debug = environ.get('TEMPLATES_AUTO_RELOAD', None)
 if debug:
     app.jinja_env.auto_reload = True
 

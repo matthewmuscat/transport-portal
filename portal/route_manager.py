@@ -20,27 +20,28 @@ class RouteManager:
         self.app = create_app()
 
         # configure the app - We should handle this in create_app, and use the config objects like in flasky
-        self.config = configs["prod"]  # Discover this based on domain name
+        self.config = configs["kpm_development"]  # Discover this based on domain name
         self.app.config['DEBUG'] = True
         self.app.config['SECRET_KEY'] = 'super-secret'
         self.app.config['SECURITY_PASSWORD_HASH'] = 'bcrypt'
         self.app.config['SECURITY_PASSWORD_SALT'] = os.environ.get("SECURITY_PASSWORD_SALT")
         self.app.config["PREFERRED_URL_SCHEME"] = PREFERRED_URL_SCHEME
         
-        # Set up SQLAlchemy binds
-        postgres_uri = f"postgres://{self.config.PSQL_USER}:{self.config.PSQL_PASS}@{self.config.PSQL_HOST}"
-        self.app.config["SQLALCHEMY_DATABASE_URI"] = f"{postgres_uri}/portal"
-        self.app.config["SQLALCHEMY_BINDS"] = {
-            "kpm_transport": f"{postgres_uri}/kpm_portal",
-            "mr_transport": f"{postgres_uri}/mr_portal"
-        }
+        # Set up SQLAlchemy db
+        self.app.config["SQLALCHEMY_DATABASE_URI"] = (
+            f"{self.config.provider}://"
+            f"{self.config.user}:"
+            f"{self.config.password}@"
+            f"{self.config.host}/"
+            f"{self.config.database}"
+        )
 
         # Set up the database stuff
         self.db = db
         self.db.init_app(self.app)
 
         # Set up Flask-Security
-        user_datastore = SQLAlchemyUserDatastore(db, User, Role)
+        user_datastore = SQLAlchemyUserDatastore(self.db, User, Role)
         Security(self.app, user_datastore)
 
         # Set up the logging

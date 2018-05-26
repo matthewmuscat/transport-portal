@@ -17,7 +17,7 @@ class Config:
     """
 
     provider: str = "postgres"
-    database: str = None
+    database: str = os.environ.get("PSQL_DB")
     password: str = os.environ.get("PSQL_PASS")
     user: str = os.environ.get("PSQL_USER")
     host: str = os.environ.get("PSQL_HOST")
@@ -29,7 +29,6 @@ class Config:
 
 
 class KPMTransport(Config):
-    database = "kpm_portal"
     model_perms = {
         "trucks": [
             "kpm_transport",
@@ -43,7 +42,6 @@ class KPMTransport(Config):
 
 
 class MRTransport(Config):
-    database = "mr_portal"
     model_perms = {
         "trucks": [
             "mr_transport",
@@ -56,7 +54,6 @@ class MRTransport(Config):
 
 
 class KPMDevelopment(Config):
-    database = "dev_portal"
     model_perms = {
         "trucks": [
             "kpm_development",

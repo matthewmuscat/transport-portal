@@ -16,7 +16,6 @@ def create_app():
         static_url_path="/static",
     )
 
-    # Set up simple apps
     mail.init_app(app)
     moment.init_app(app)
 
