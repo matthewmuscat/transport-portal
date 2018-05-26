@@ -1,5 +1,5 @@
 from flask_security import RoleMixin, UserMixin
-from pony.orm import PrimaryKey, Required, Set, Database
+from flask_sqlalchemy import SQLAlchemy
 
 from portal.config import configs
 

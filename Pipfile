@@ -12,6 +12,7 @@ pony = "*"
 flask-security = "*"
 "psycopg2-binary" = "*"
 bcrypt = "*"
+flask-sqlalchemy = "*"
 
 [dev-packages]
 "flake8" = "*"
