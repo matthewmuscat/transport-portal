@@ -16,8 +16,9 @@ db = manager.db
 # Migrate and create tables
 Migrate(app, db)
 with app.app_context():
-    migrate()
-    upgrade()
+    upgrade()   # Make sure the database is up to date.
+    migrate()   # Make any migrations that might be necessary.
+    upgrade()   # Apply the new migration, if one was made.
 
 # Should we auto reload when templates change?
 if app.config['TEMPLATES_AUTO_RELOAD']:
