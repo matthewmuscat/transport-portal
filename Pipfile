@@ -29,7 +29,7 @@ flask-mail = "*"
 python_version = "3.6"
 
 [scripts]
-start     = "gunicorn --preload -w 1 -b 0.0.0.0:10013 portal:app"
+start     = "gunicorn --preload -w 12 -b 0.0.0.0:10013 portal:app"
 lint      = "python -m flake8"
 test      = "py.test tests --cov app --cov-report term-missing -v"
 clean     = "rm -rf __pycache__ htmlcov .coverage .pytest_cache"
