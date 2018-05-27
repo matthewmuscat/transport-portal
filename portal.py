@@ -2,20 +2,19 @@ import os
 
 from flask_migrate import Migrate, migrate, upgrade
 
-from app import create_app, db
-from app.route_manager import RouteManager
+from app import RouteManager
 
-# Set up the app and the database
+# Set up the route manager with the correct config
 if "FLASK_DEBUG" in os.environ:
-    app = create_app("development")
+    manager = RouteManager("development")
 else:
-    app = create_app("production")
+    manager = RouteManager("production")
 
-# Set up the app and the database
-manager = RouteManager(app, db)
-Migrate(app, db)
+app = manager.app
+db = manager.db
 
 # Migrate and create tables
+Migrate(app, db)
 with app.app_context():
     migrate()
     upgrade()
@@ -26,4 +25,4 @@ if app.config['TEMPLATES_AUTO_RELOAD']:
 
 # Start the app!
 if __name__ == '__main__':
-    manager.run()
+    app.run()

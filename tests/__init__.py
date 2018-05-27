@@ -1,6 +1,6 @@
 from flask_testing import TestCase
 
-from app import create_app
+from app import RouteManager
 
 
 class SiteTest(TestCase):
@@ -13,4 +13,6 @@ class SiteTest(TestCase):
         Add flask app configuration settings
         """
 
-        return create_app("testing")
+        manager = RouteManager("testing")
+
+        return manager.app
