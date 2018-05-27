@@ -1,13 +1,10 @@
 from app import db
+from app.models.base_models import Employee, Truck
 
 
-class KPMTruck(db.Model):
+class KPMTruck(db.Model, Truck):
     __tablename__ = "kpm_trucks"
-    id = db.Column(db.Integer(), primary_key=True)
-    model = db.Column(db.String(), nullable=False)
 
 
-class KPMEmployee(db.Model):
+class KPMEmployee(db.Model, Employee):
     __tablename__ = "kpm_employees"
-    id = db.Column(db.Integer(), primary_key=True)
-    name = db.Column(db.String(), nullable=False)

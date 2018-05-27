@@ -1,13 +1,10 @@
 from app import db
+from app.models.base_models import Employee, Truck
 
 
-class MRTruck(db.Model):
+class MRTruck(db.Model, Truck):
     __tablename__ = "mr_trucks"
-    id = db.Column(db.Integer(), primary_key=True)
-    model = db.Column(db.String(), nullable=False)
 
 
-class MREmployee(db.Model):
+class MREmployee(db.Model, Employee):
     __tablename__ = "mr_employees"
-    id = db.Column(db.Integer(), primary_key=True)
-    name = db.Column(db.String(), nullable=False)
