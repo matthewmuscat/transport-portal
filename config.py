@@ -45,14 +45,12 @@ class DevelopmentConfig(Config):
 
 
 class TestingConfig(Config):
+    SQLALCHEMY_DATABASE_URI = "postgres:///portal"
     LIVESERVER_TIMEOUT = 10
     SERVER_NAME = 'pytest.local'
     TESTING = True
     WTF_CSRF_ENABLED = False
     WTF_CSRF_CHECK_DEFAULT = False
-    SQLALCHEMY_DATABASE_URI = (
-        f"postgres:///portal"
-    )
 
 
 config = {
