@@ -11,7 +11,7 @@ class Config:
     a config with the appropriate settings.
     """
 
-    SECRET_KEY = os.environ.get("SECRET_KEY")
+    SECRET_KEY = os.urandom(32)
     SECURITY_PASSWORD_HASH = 'bcrypt'
     SECURITY_PASSWORD_SALT = os.environ.get("SECURITY_PASSWORD_SALT")
     PREFERRED_URL_SCHEME = "https"
