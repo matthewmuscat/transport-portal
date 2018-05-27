@@ -5,7 +5,7 @@ RUN apk add --update tini
 RUN apk add --update build-base
 RUN apk add --update libffi-dev
 RUN apk add --update postgresql-dev
-RUN apk add --update gcc  
+RUN apk add --update gcc
 RUN apk add --update musl-dev
 
 # Set environment variables
