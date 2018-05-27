@@ -8,8 +8,18 @@ class RootEndpoint(SiteTest):
 
     def test_index(self):
         """
-        Check the root path responds with 200 OK
+        Check the root path responds with 302 OK
         """
 
-        response = self.client.get('/', "http://" + self.app.config['SERVER_NAME'])
-        self.assertEqual(response.status_code, 200)
+        response = self.client.get('/', follow_redirects=True)
+        self.assert200(response)
+
+    def test_login_redirect(self):
+        """
+        Check that the root path redirects to /login if TESTING is not true.
+        :return:
+        """
+
+        response = self.client.get('/')
+        self.assertStatus(response, 302)
+        self.assertIn("/login", response.headers.get("Location"))

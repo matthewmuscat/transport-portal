@@ -13,7 +13,7 @@ ERROR_DESCRIPTIONS = {
 
 
 class Error500View(ErrorView):
-    name = "errors.5xx"
+    name = "errors-5xx"
     error_code = range(500, 600)
 
     def __init__(self):

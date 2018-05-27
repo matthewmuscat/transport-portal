@@ -19,7 +19,7 @@ ERROR_DESCRIPTIONS = {
 
 
 class Error400View(ErrorView):
-    name = "errors.4xx"
+    name = "errors-4xx"
     error_code = range(400, 430)
 
     def __init__(self):
