@@ -222,3 +222,5 @@ class RedirectView(RouteView):
             return redirect(self.page, code=self.code)
 
         return redirect(url_for(self.page, **self.kwargs), code=self.code)
+
+# TODO: Write a ModelView class which automatically spits out the right models.

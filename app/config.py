@@ -2,6 +2,7 @@ import os
 from typing import Dict, List, Optional
 
 
+# TODO: Rewrite this whole file to use configuration objects that configure the flask app.
 class Config:
     """
     This class defines stuff like what database to use,

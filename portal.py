@@ -15,7 +15,7 @@ with app.app_context():
     migrate()
     upgrade()
 
-#
+# If we're in debug mode, auto reload whenever there's a change to a file.
 debug = environ.get('TEMPLATES_AUTO_RELOAD', None)
 if debug:
     app.jinja_env.auto_reload = True
