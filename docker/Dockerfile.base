@@ -3,6 +3,10 @@ FROM python:3.6-alpine3.7
 # Install essential system packages
 RUN apk add --update tini
 RUN apk add --update build-base
+RUN apk add --update libffi-dev
+RUN apk add --update postgresql-dev
+RUN apk add --update gcc  
+RUN apk add --update musl-dev
 
 # Set environment variables
 ENV PIPENV_VENV_IN_PROJECT=1
