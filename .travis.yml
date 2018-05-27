@@ -23,6 +23,9 @@ install:
   - pip install pipenv
   - pipenv sync --dev
 
+before_script:
+ - psql -c 'create database portal;' -U postgres
+
 script:
   - pipenv run lint
   - pipenv run test

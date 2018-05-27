@@ -1,7 +1,15 @@
 from werkzeug.exceptions import HTTPException, InternalServerError
 
 from app.base_routes import ErrorView
-from app.constants import ERROR_DESCRIPTIONS
+
+ERROR_DESCRIPTIONS = {
+    500: "The server encountered an unexpected error ._.",
+    501: "Woah! You seem to have found something we haven't even implemented yet!",
+    502: "This is weird, one of our upstream servers seems to have experienced an error.",
+    503: "Looks like one of our services is down for maintenance and couldn't respond to your request.",
+    504: "Looks like an upstream server experienced a timeout while we tried to talk to it!",
+    505: "You're using an old HTTP version. It might be time to upgrade your browser.",
+}
 
 
 class Error500View(ErrorView):

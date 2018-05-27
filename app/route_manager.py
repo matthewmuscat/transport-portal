@@ -4,46 +4,16 @@ import logging
 import os
 
 from flask import Blueprint
-from flask_security import SQLAlchemyUserDatastore, Security
 
-from app import create_app, db
 from app.base_routes import BaseView, ErrorView, RedirectView, RouteView, TemplateView
-from app.config import configs
-from app.constants import PREFERRED_URL_SCHEME
-from app.models.security import Role, User
 
 
 class RouteManager:
-    def __init__(self):
+    def __init__(self, app, db):
 
-        # Set up the app and the database
-        self.app = create_app()
-
-        # configure the app - We should handle this in create_app, and use the config objects like in flasky
-        self.config = configs["kpm_development"]  # Discover this based on domain name
-        self.app.config['DEBUG'] = True
-        self.app.config['SECRET_KEY'] = 'super-secret'
-        self.app.config['SECURITY_PASSWORD_HASH'] = 'bcrypt'
-        self.app.config['SECURITY_PASSWORD_SALT'] = os.environ.get("SECURITY_PASSWORD_SALT")
-        self.app.config["PREFERRED_URL_SCHEME"] = PREFERRED_URL_SCHEME
-        self.app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-
-        # Set up SQLAlchemy db
-        self.app.config["SQLALCHEMY_DATABASE_URI"] = (
-            f"{self.config.provider}://"
-            f"{self.config.user}:"
-            f"{self.config.password}@"
-            f"{self.config.host}/"
-            f"{self.config.database}"
-        )
-
-        # Set up the database stuff
+        # Set up app and db
+        self.app = app
         self.db = db
-        self.db.init_app(self.app)
-
-        # Set up Flask-Security
-        user_datastore = SQLAlchemyUserDatastore(self.db, User, Role)
-        Security(self.app, user_datastore)
 
         # Set up the logging
         self.log = logging.getLogger(__name__)
