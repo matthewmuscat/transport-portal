@@ -1,0 +1,19 @@
+{% if security.registerable or security.recoverable or security.confirmable %}
+    <h2>Meny</h2>
+    <ul>
+        <li><a href="
+                {{ url_for_security('login') }}{% if 'next' in request.args %}?next={{ request.args.next|urlencode }}{% endif %}">Logg inn</a>
+        </li>
+        {% if security.registerable %}
+            <li><a href="
+                    {{ url_for_security('register') }}{% if 'next' in request.args %}?next={{ request.args.next|urlencode }}{% endif %}">Registrer ny konto</a><br/>
+            </li>
+        {% endif %}
+        {% if security.recoverable %}
+            <li><a href="{{ url_for_security('forgot_password') }}">Glemt passord</a><br/></li>
+        {% endif %}
+        {% if security.confirmable %}
+            <li><a href="{{ url_for_security('send_confirmation') }}">Send kontobekreftelse</a></li>
+        {% endif %}
+    </ul>
+{% endif %}

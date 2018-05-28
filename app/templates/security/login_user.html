@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block user_style %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+{%  endblock %}
+
+{% block user_scripts %}
+    <script src="{{ url_for('static', filename='js/login.js') }}"></script>
+{%  endblock %}
+
+{% block body %}
+
+
+    <!-- These are primitives for the curved shape on the left side. -->
+    <div class="login-mask"></div>
+    <div class="left-side-mask"></div>
+
+    <!-- Here's the actual content -->
+    <div class="flex-container">
+      <div class="left-side">
+        <img src="http://kpmtransport.no/img/100h%20logo.png">
+      </div>
+      <div class="right-side">
+        <form action="{{ url_for_security('login') }}" method="POST" name="login_user_form">
+            {{ login_user_form.email() }}
+            {{ login_user_form.password() }}
+            {{ login_user_form.remember }}
+            {{ login_user_form.submit }}
+        </form>
+      </div>
+    </div>
+    {% include "security/_menu.html" %}
+{% endblock %}
