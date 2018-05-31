@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block user_style %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='scss/brandings/kpm_transport.css') }}"/>
 {%  endblock %}
 
 {% block user_scripts %}
@@ -18,14 +18,17 @@
     <!-- Here's the actual content -->
     <div class="flex-container">
       <div class="left-side">
-        <img src="http://kpmtransport.no/img/100h%20logo.png">
+        <img src="{{ url_for('static', filename='img/kpm_transport_logo.png') }}">
       </div>
       <div class="right-side">
         <form action="{{ url_for_security('login') }}" method="POST" name="login_user_form">
-            {{ login_user_form.email() }}
-            {{ login_user_form.password() }}
-            {{ login_user_form.remember }}
-            {{ login_user_form.submit }}
+            {{ login_user_form.email(type="field", placeholder="Email") }}
+            {{ login_user_form.password(type="field", placeholder="Password") }}
+            <label class="checkbox">
+                {{ login_user_form.remember(type="checkbox") }}
+                Remember me
+            </label>
+            {{ login_user_form.submit(type="button", value="Sign in") }}
         </form>
       </div>
     </div>

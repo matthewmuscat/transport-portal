@@ -1,0 +1,152 @@
+/* Certain variables, such as $primary-color and $secondary-color
+   are declared inside the branding for the specific domain.       */
+
+// Mixins
+@mixin transition($property, $duration) {
+  -webkit-transition: $property $duration;
+  -moz-transition: $property $duration;
+  -ms-transition: $property $duration;
+  transition: $property $duration;
+}
+
+@mixin clip-path($shape) {
+  -webkit-clip-path: $shape;
+  -moz-clip-path: $shape;
+  -ms-clip-path: $shape;
+  clip-path: $shape;
+}
+
+// Extensions
+%login-field {
+  @include transition(border, 500ms);
+  float: none;
+  position: static;
+  clear: none;
+  width: 90%;
+  height: 2.5em;
+  border-radius: 4px;
+  background-color: transparent;
+  color: white;
+  font-weight: bold;
+  text-indent: 10px;
+  margin: 0px auto 7px auto;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+  background-color: $primary-color;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  background-color: transparent;
+}
+
+// The partial circle mask
+div.login-mask {
+  @include transition(left, 0.5s);
+  @include clip-path(circle(67.9% at 0 40%));
+  left: 10%;
+  margin: 0;
+  padding: 0;
+  background-color: $secondary-color;
+  height: 100%;
+  width: 90%;
+  position: absolute;
+  z-index: -1;
+}
+
+// CSS animation for when the circle mask moves
+div.login-mask-move {
+  @include transition(left, 0.5s);
+  left: 0%;
+}
+
+// A box that masks the left side of the screen when the circle mask moves
+div.left-side-mask {
+  margin: 0;
+  padding: 0;
+  background-color: $secondary-color;
+  height: 100%;
+  width: 30%;
+  position: absolute;
+  z-index: -2;
+}
+
+// The flex container, containing the content divs for both sides
+div.flex-container {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  height: 100%;
+  width: 100%;
+}
+
+// Left half of the flexbox
+div.left-side {
+  flex: 1;
+  text-align: center;
+}
+
+// Right half of the flexbox
+div.right-side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+// The login form itself
+form {
+  flex: 1;
+  margin-left: 15%;
+  width: 30%;
+}
+
+// input fields in that form
+form input[type=field] {
+  @extend %login-field;
+  border: #222222 2px solid;
+}
+
+form input[type=field]:focus {
+  @extend %login-field;
+  @include transition(border, 500ms);
+  border: 2px solid #344344;
+}
+
+// The remember me checkbox
+form label{
+  color: #222222;
+  font-size: 16px;
+}
+form input[type=checkbox] {
+  position: static;
+  height: 1em;
+  vertical-align: sub;
+
+}
+
+// The login button
+form input[type=button] {
+  padding: 0;
+  border: none;
+  color: #96bfcc;
+  background-color: #222222;
+  font-size: 20px;
+  height: 50px;
+  width: 90%;
+  margin-top: 7px;
+  text-align: center;
+}
+
+// The company logo
+img {
+  max-width: 50%;
+  height: auto;
+  width: auto;
+}
