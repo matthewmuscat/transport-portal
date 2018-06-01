@@ -1,7 +1,8 @@
 #!/bin/bash
 # This sends a webhook request from Travis to Discord on failure or success.
-# Used with permission from k3rn31p4nic granted via an MIT license.
+# This code adapts a script written by k3rn31p4nic, permission granted by MIT license.
 # Originally posted on https://github.com/k3rn31p4nic/travis-ci-discord-webhook
+# The main difference in this adaptation is that it uses the travis-ci.com instead of .org
 
 if [ -z "$2" ]; then
   echo -e "WARNING!!\nYou need to pass the WEBHOOK_URL environment variable as the second argument to this script.\nFor details & guide, visit: https://github.com/k3rn31p4nic/travis-ci-discord-webhook" && exit
