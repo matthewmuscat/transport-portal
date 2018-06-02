@@ -34,24 +34,31 @@ class RouteManager:
         db.init_app(app)
 
         user_datastore = SQLAlchemyUserDatastore(db, User, Role)
-        security = Security(app, user_datastore)
+        Security(app, user_datastore)
 
-        # Add the domain to the security templates
-        @security.context_processor
-        def security_context_processor():
+        # Set up the app and the db
+        self.app = app
+        self.db = db
 
-            # Parse e.g. `kpmtransport` out of `portal.kpmtransport.no`
-            domain_name = request.headers['Host'].split(".")[1]
+        # Dynamically load the correct stylesheet based on domain name
+        @self.app.context_processor
+        def set_domain_name():
 
+            if "domain_name" not in request.args:
+                # Parse e.g. `kpmtransport` out of `portal.kpmtransport.no`
+                domain_name = request.headers['Host'].split(".")[1]
+            else:
+                # In debug mode, allow user to specify which style to load via a `domain_name` URL param.
+                if self.app.config["DEBUG"]:
+                    domain_name = request.args.get("domain_name")
+                else:
+                    domain_name = "default"
+
+            # Set the default if the selected one has no accompanying scss file.
             if f"{domain_name}.scss" not in os.listdir("app/static/scss/brandings"):
-                print(os.listdir("app/static/scss/brandings"))
                 domain_name = "default"
 
             return dict(domain_name=domain_name)
-
-        # Set up app and db
-        self.app = app
-        self.db = db
 
         # Set up the logging
         self.log = logging.getLogger(__name__)
