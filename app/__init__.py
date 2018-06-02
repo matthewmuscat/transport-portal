@@ -39,7 +39,9 @@ class RouteManager:
         # Add the domain to the security templates
         @security.context_processor
         def security_context_processor():
-            domain_name = request.headers['Host']
+
+            # Parse e.g. `kpmtransport` out of `portal.kpmtransport.no`
+            domain_name = request.headers['Host'].split(".")[1]
 
             if f"{domain_name}.scss" not in os.listdir("app/static/scss/brandings"):
                 print(os.listdir("app/static/scss/brandings"))
