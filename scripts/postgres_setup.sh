@@ -9,9 +9,7 @@ sudo apt-get install postgresql postgresql-contrib
 
 # Create a user and a database in postgres
 echo "-- POSTGRESQL INIT --"
-echo "You will now be prompted to create a password. Please make note of the password you select."
-echo "This password must be added as an environment variable with the name POSTGRES_PASSWORD."
-sudo -u postgres createuser portal --pwprompt
+sudo -u postgres createuser portal
 sudo -u postgres createdb portal
 
 # Add the user to linux

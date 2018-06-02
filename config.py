@@ -40,6 +40,7 @@ class ProductionConfig(Config):
 
 
 class DevelopmentConfig(Config):
+    SQLALCHEMY_DATABASE_URI = "postgres:///portal"
     DEBUG = True
     TEMPLATES_AUTO_RELOAD = True
 
