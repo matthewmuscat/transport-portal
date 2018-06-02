@@ -8,7 +8,9 @@
 */
 /* Certain variables, such as $primary-color and $secondary-color
    are declared inside the branding for the specific domain.       */
-form input[type=field], form input[type=field]:focus {
+form input[type=field],
+form input[type=password], form input[type=field]:focus,
+form input[type=password]:focus {
   -webkit-transition: border 500ms;
   -moz-transition: border 500ms;
   -ms-transition: border 500ms;
@@ -93,10 +95,12 @@ form {
   margin-left: 15%;
   width: 30%; }
 
-form input[type=field] {
+form input[type=field],
+form input[type=password] {
   border: #222222 2px solid; }
 
-form input[type=field]:focus {
+form input[type=field]:focus,
+form input[type=password]:focus {
   -webkit-transition: border 500ms;
   -moz-transition: border 500ms;
   -ms-transition: border 500ms;

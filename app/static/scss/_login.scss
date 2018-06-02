@@ -108,12 +108,14 @@ form {
 }
 
 // input fields in that form
-form input[type=field] {
+form input[type=field],
+form input[type=password] {
   @extend %login-field;
   border: #222222 2px solid;
 }
 
-form input[type=field]:focus {
+form input[type=field]:focus,
+form input[type=password]:focus {
   @extend %login-field;
   @include transition(border, 500ms);
   border: 2px solid #344344;
