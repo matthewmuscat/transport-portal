@@ -1,0 +1,131 @@
+/*
+    Branding for KPM Transport. This branding is loaded if you go to portal.kpmtransport.no.
+
+    PLEASE NOTE: DO NOT CHANGE THE .CSS FILE MANUALLY.
+    ALL CHANGES MUST BE MADE IN THE .SCSS FILES, OR THEY WILL BE OVERWRITTEN.
+
+    See https://sass-lang.com/guide for more info if you don't know what SCSS is.
+*/
+/* Certain variables, such as $primary-color and $secondary-color
+   are declared inside the branding for the specific domain.       */
+form input[type=field], form input[type=field]:focus {
+  -webkit-transition: border 500ms;
+  -moz-transition: border 500ms;
+  -ms-transition: border 500ms;
+  transition: border 500ms;
+  float: none;
+  position: static;
+  clear: none;
+  width: 90%;
+  height: 2.5em;
+  border-radius: 4px;
+  background-color: transparent;
+  color: white;
+  font-weight: bold;
+  text-indent: 10px;
+  margin: 0px auto 7px auto;
+  padding: 0; }
+
+html {
+  height: 100%;
+  background-color: #2d8088; }
+
+body {
+  height: 100%;
+  margin: 0;
+  background-color: transparent; }
+
+div.login-mask {
+  -webkit-transition: left 0.5s;
+  -moz-transition: left 0.5s;
+  -ms-transition: left 0.5s;
+  transition: left 0.5s;
+  -webkit-clip-path: circle(67.9% at 0 40%);
+  -moz-clip-path: circle(67.9% at 0 40%);
+  -ms-clip-path: circle(67.9% at 0 40%);
+  clip-path: circle(67.9% at 0 40%);
+  left: 10%;
+  margin: 0;
+  padding: 0;
+  background-color: #182c30;
+  height: 100%;
+  width: 90%;
+  position: absolute;
+  z-index: -1; }
+
+div.login-mask-move {
+  -webkit-transition: left 0.5s;
+  -moz-transition: left 0.5s;
+  -ms-transition: left 0.5s;
+  transition: left 0.5s;
+  left: 0%; }
+
+div.left-side-mask {
+  margin: 0;
+  padding: 0;
+  background-color: #182c30;
+  height: 100%;
+  width: 30%;
+  position: absolute;
+  z-index: -2; }
+
+div.flex-container {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  height: 100%;
+  width: 100%; }
+
+div.left-side {
+  flex: 1;
+  text-align: center; }
+
+div.right-side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+form {
+  flex: 1;
+  margin-left: 15%;
+  width: 30%; }
+
+form input[type=field] {
+  border: #222222 2px solid; }
+
+form input[type=field]:focus {
+  -webkit-transition: border 500ms;
+  -moz-transition: border 500ms;
+  -ms-transition: border 500ms;
+  transition: border 500ms;
+  border: 2px solid #344344; }
+
+form label {
+  color: #222222;
+  font-size: 16px; }
+
+form input[type=checkbox] {
+  position: static;
+  height: 1em;
+  vertical-align: sub; }
+
+form input[type=button] {
+  padding: 0;
+  border: none;
+  color: #96bfcc;
+  background-color: #222222;
+  font-size: 20px;
+  height: 50px;
+  width: 90%;
+  margin-top: 7px;
+  text-align: center; }
+
+img {
+  max-width: 50%;
+  height: auto;
+  width: auto; }
+
+/*# sourceMappingURL=default.css.map */

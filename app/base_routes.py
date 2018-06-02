@@ -1,7 +1,7 @@
 from collections import Iterable
 from typing import Any
 
-from flask import Blueprint, redirect, render_template, url_for
+from flask import Blueprint, redirect, render_template, request, url_for
 from flask.views import MethodView
 from flask_security import login_required
 from werkzeug.exceptions import default_exceptions
@@ -35,6 +35,7 @@ class BaseView(MethodView):
         context["current_page"] = self.name
         context["view"] = self
         context["static_file"] = self._static_file
+        context["domain_name"] = request.headers['Host']
 
         return render_template(template_names, **context)
 

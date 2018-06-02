@@ -3,7 +3,7 @@ import inspect
 import logging
 import os
 
-from flask import Blueprint, Flask
+from flask import Blueprint, Flask, request
 from flask_mail import Mail
 from flask_moment import Moment
 from flask_security import SQLAlchemyUserDatastore, Security
@@ -14,7 +14,6 @@ from app.base_routes import BaseView, ErrorView, RedirectView, RouteView, Templa
 mail = Mail()
 moment = Moment()
 db = SQLAlchemy()
-security = Security()
 
 
 class RouteManager:
@@ -35,7 +34,18 @@ class RouteManager:
         db.init_app(app)
 
         user_datastore = SQLAlchemyUserDatastore(db, User, Role)
-        Security(app, user_datastore)
+        security = Security(app, user_datastore)
+
+        # Add the domain to the security templates
+        @security.context_processor
+        def security_context_processor():
+            domain_name = request.headers['Host']
+
+            if f"{domain_name}.scss" not in os.listdir("app/static/scss/brandings"):
+                print(os.listdir("app/static/scss/brandings"))
+                domain_name = "default"
+
+            return dict(domain_name=domain_name)
 
         # Set up app and db
         self.app = app
