@@ -116,7 +116,7 @@ form input[type=checkbox] {
   height: 1em;
   vertical-align: sub; }
 
-form input[type=button] {
+form input[type=submit] {
   padding: 0;
   border: none;
   color: #96bfcc;

@@ -2,31 +2,35 @@
 
 {% block user_scripts %}
     <script src="{{ url_for('static', filename='js/login.js') }}"></script>
-{%  endblock %}
+{% endblock %}
 
 {% block body %}
-
 
     <!-- These are primitives for the curved shape on the left side. -->
     <div class="login-mask"></div>
     <div class="left-side-mask"></div>
 
-    <!-- Here's the actual content -->
+    {% include "security/_messages.html" %}
     <div class="flex-container">
-      <div class="left-side">
-        <img src="{{ url_for('static', filename='img/logos/' + domain_name + '.png') }}">
-      </div>
-      <div class="right-side">
-        <form action="{{ url_for_security('login') }}" method="POST" name="login_user_form">
-            {{ login_user_form.email(type="field", placeholder="Email") }}
-            {{ login_user_form.password(type="password", placeholder="Password") }}
-            <label class="checkbox">
-                {{ login_user_form.remember(type="checkbox") }}
-                Remember me
-            </label>
-            {{ login_user_form.submit(type="button", value="Sign in") }}
-        </form>
-      </div>
+
+        <!-- Logo side content -->
+        <div class="left-side">
+            <img src="{{ url_for('static', filename='img/logos/' + domain_name + '.png') }}">
+        </div>
+
+        <!-- Form content -->
+        <div class="right-side">
+            <form action="{{ url_for_security('login') }}" method="POST" name="login_user_form">
+                {{ login_user_form.hidden_tag() }}
+                {{ login_user_form.email(id="email", type="field", placeholder="Email") | safe }}
+                {{ login_user_form.password(id="password", type="password", placeholder="Password") | safe }}
+                <label class="checkbox">
+                    {{ login_user_form.remember(id="checkbox", type="checkbox") | safe }}
+                    Remember me
+                </label>
+                {{ login_user_form.submit(id="submit", type="submit", value="Sign in") | safe }}
+            </form>
+        </div>
     </div>
     {% include "security/_menu.html" %}
 {% endblock %}
