@@ -136,4 +136,8 @@ ul.flashes {
   margin-top: 1%;
   color: #910911; }
 
+nav.is-client-primary {
+  background-color: #cf7a00;
+  color: #303030; }
+
 /*# sourceMappingURL=kpmtransport.css.map */

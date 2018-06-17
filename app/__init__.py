@@ -9,8 +9,6 @@ from flask_moment import Moment
 from flask_security import SQLAlchemyUserDatastore, Security
 from flask_sqlalchemy import SQLAlchemy
 
-from app.base_routes import BaseView, ErrorView, RedirectView, RouteView, TemplateView
-
 mail = Mail()
 moment = Moment()
 db = SQLAlchemy()
@@ -18,7 +16,6 @@ db = SQLAlchemy()
 
 class RouteManager:
     def __init__(self, config_name):
-        from app.models.security import Role, User
         from config import config
 
         # Build the actual app
@@ -33,28 +30,28 @@ class RouteManager:
         moment.init_app(app)
         db.init_app(app)
 
-        user_datastore = SQLAlchemyUserDatastore(db, User, Role)
-        Security(app, user_datastore)
-
         # Set up the app and the db
         self.app = app
         self.db = db
+
+        # Security init (this depends on a working database)
+        from app.models.security import Role, User
+        user_datastore = SQLAlchemyUserDatastore(db, User, Role)
+        Security(app, user_datastore)
 
         # Dynamically load the correct stylesheet based on domain name
         @self.app.context_processor
         def set_domain_name():
 
-            if "domain_name" not in request.args:
+            if self.app.config["DEBUG"] and "domain_name" in request.args:
+                domain_name = request.args.get("domain_name")
+
+            else:
                 # Parse e.g. `kpmtransport` out of `portal.kpmtransport.no`
                 domain_name = request.headers['Host'].split(".")[1]
-            else:
-                # In debug mode, allow user to specify which style to load via a `domain_name` URL param.
-                if self.app.config["DEBUG"]:
-                    domain_name = request.args.get("domain_name")
-                else:
-                    domain_name = "default"
 
             # Set the default if the selected one has no accompanying scss file.
+            print(os.listdir("app/static/scss/brandings"))
             if f"{domain_name}.scss" not in os.listdir("app/static/scss/brandings"):
                 domain_name = "default"
 
@@ -74,6 +71,8 @@ class RouteManager:
         self.app.run(port=8080)
 
     def load_views(self, blueprint, location="views"):
+        from app.base_routes import BaseView, ErrorView, RedirectView, RouteView, TemplateView
+
         for filename in os.listdir(location):
             if os.path.isdir(f"{location}/{filename}"):
 

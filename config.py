@@ -22,18 +22,6 @@ class Config:
         f"postgres://portal:{os.environ.get('POSTGRES_PASSWORD')}@localhost/portal"
     )
 
-    # This is used to configure whose data a user can access.
-    MODEL_ACCESS_PERMISSIONS = {
-        "kpm_transport": {
-            "trucks": ("kpm_transport", "mr_transport"),
-            "employees": ("kpm_transport",)
-        },
-        "mr_transport": {
-            "trucks": ("mr_transport",),
-            "employees": ("mr_transport",)
-        }
-    }
-
 
 class ProductionConfig(Config):
     pass
@@ -54,6 +42,20 @@ class TestingConfig(Config):
     WTF_CSRF_CHECK_DEFAULT = False
 
 
+# This is used to configure whose data a group can access.
+# All users have a group attribute which defines which group they belong to.
+model_access_perms = {
+    "kpm_transport": {
+        "trucks": ("kpm_transport", "mr_transport"),
+        "employees": ("kpm_transport",)
+    },
+    "mr_transport": {
+        "trucks": ("mr_transport",),
+        "employees": ("mr_transport",)
+    }
+}
+
+# look up the config in app/__init__.py so we can apply the right one.
 config = {
     "development": DevelopmentConfig,
     "production": ProductionConfig,

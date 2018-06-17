@@ -1,10 +1,13 @@
 from collections import Iterable
 from typing import Any
 
-from flask import Blueprint, redirect, render_template, request, url_for
+from flask import Blueprint, redirect, render_template, session, url_for
 from flask.views import MethodView
 from flask_security import login_required
 from werkzeug.exceptions import default_exceptions
+
+from app.models.security import User
+from config import model_access_perms  # noqa
 
 
 class BaseView(MethodView):
@@ -35,7 +38,12 @@ class BaseView(MethodView):
         context["current_page"] = self.name
         context["view"] = self
         context["static_file"] = self._static_file
-        context["domain_name"] = request.headers['Host']
+
+        # Get all relevant models and output those with the context
+        current_user = User.query.get(session['user_id'])
+        user_group = current_user.group
+        access_perms = model_access_perms[user_group]
+        print(access_perms)
 
         return render_template(template_names, **context)
 
@@ -145,16 +153,15 @@ class TemplateView(RouteView):
     """
     An easy view for routes that simply render a template with no extra information.
 
-    This class is intended to be subclassed - use it as a base class for your own views, and set the class-level
-    attributes as appropriate. For example:
+    This class should only ever be subclassed. For example:
 
     >>> class MyView(TemplateView):
     ...     name = "my_view"  # Flask internal name for this route
     ...     path = "/my_view"  # Actual URL path to reach this route
     ...     template = "my_view.html"  # Template to use
 
-    Note that this view only handles GET requests. If you need any other verbs, you can implement them yourself
-    or just use one of the more customizable base view classes.
+    Note that this view only handles GET requests. Other http methods can be implemented
+    by simply creating a corresponding method, such as `post()` or `delete()`.
     """
 
     template = None  # type: str
