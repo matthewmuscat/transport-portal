@@ -35,15 +35,29 @@ class BaseView(MethodView):
         :param context: Extra data to pass into the template
         :return: String representing the rendered templates
         """
+
         context["current_page"] = self.name
         context["view"] = self
         context["static_file"] = self._static_file
 
-        # Get all relevant models and output those with the context
+        # Get the models the user has access to
         current_user = User.query.get(session['user_id'])
         user_group = current_user.group
         access_perms = model_access_perms[user_group]
-        print(access_perms)
+
+        # Unpack models
+        models = {}
+        for model_type, models in access_perms.items():
+            model_list = []
+
+            for model in models:
+                model_list.append(model.query.all())
+
+            models[model_type] = model_list
+
+        context["models"] = models
+
+        print(context["models"])
 
         return render_template(template_names, **context)
 

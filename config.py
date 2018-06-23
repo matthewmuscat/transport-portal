@@ -1,5 +1,7 @@
 import os
 
+from app.models import KPMEmployee, KPMTruck, MREmployee, MRTruck
+
 
 class Config:
     """
@@ -46,12 +48,12 @@ class TestingConfig(Config):
 # All users have a group attribute which defines which group they belong to.
 model_access_perms = {
     "kpm_transport": {
-        "trucks": ("kpm_transport", "mr_transport"),
-        "employees": ("kpm_transport",)
+        "trucks": (KPMTruck, MRTruck),
+        "employees": (KPMEmployee,)
     },
     "mr_transport": {
-        "trucks": ("mr_transport",),
-        "employees": ("mr_transport",)
+        "trucks": (MRTruck,),
+        "employees": (MREmployee,)
     }
 }
 
