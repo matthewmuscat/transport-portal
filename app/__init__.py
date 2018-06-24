@@ -59,11 +59,25 @@ class RouteManager:
         # Set up the logging
         self.log = logging.getLogger(__name__)
 
-        # Load all the views
+        # Load the main blueprint
         self.main_blueprint = Blueprint("main", __name__)
         self.log.debug(f"Loading Blueprint: {self.main_blueprint.name}")
-        self.load_views(self.main_blueprint, "app/views")
+        self.load_views(self.main_blueprint, "app/views/main")
+
+        # Load the admin blueprint
+        self.admin_blueprint = Blueprint("admin", __name__)
+        self.log.debug(f"Loading Blueprint: {self.main_blueprint.name}")
+        self.load_views(self.admin_blueprint, "app/views/admin")
+
+        # Load the error handling blueprint
+        self.error_blueprint = Blueprint("error", __name__)
+        self.log.debug(f"Loading Blueprint: {self.main_blueprint.name}")
+        self.load_views(self.error_blueprint, "app/views/error_handlers")
+
+        # Register all the blueprints
         self.app.register_blueprint(self.main_blueprint)
+        self.app.register_blueprint(self.admin_blueprint)
+        self.app.register_blueprint(self.error_blueprint)
         self.log.debug("")
 
     def run(self):

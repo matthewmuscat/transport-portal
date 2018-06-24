@@ -1,4 +1,5 @@
-{% extends "base.html" %}
+{% extends "_base.html" %}
+{% import "_macros.html" as macros %}
 
 {% block title %}
     Work in progress, guy!
@@ -7,24 +8,7 @@
 {% block body %}
 
     <!-- Navbar -->
-    <nav class="navbar is-primary">
-        <div class="container">
-            <div class="navbar-brand">
-                <a class="navbar-item" href="#" style="font-weight:bold;">
-                    testnav
-                </a>
-                <span class="navbar-burger burger" data-target="navMenu">
-                </span>
-            </div>
-            <div id="navMenu" class="navbar-menu">
-                <div class="navbar-end">
-                    <a href="#" class="navbar-item is-active">Admin</a>
-                    <a href="#" class="navbar-item">Trucks</a>
-                    <a href="#" class="navbar-item">Employees</a>
-                </div>
-            </div>
-        </div>
-    </nav>
+    {{ macros.navbar(current_page) }}
 
     <!-- Main body -->
     <section>

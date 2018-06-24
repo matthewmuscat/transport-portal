@@ -1,0 +1,50 @@
+
+<!-- Generate a navbar of the requested type -->
+{% macro navbar(current_page) -%}
+
+    <!-- Admin navbar -->
+    {% if 'admin' in current_page %}
+        <nav class="navbar is-dark">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a class="navbar-item is-bold" href="/admin">Admin</a>
+                </div>
+                <div id="navMenu" class="navbar-menu">
+                    <div class="navbar-end">
+                        <!-- Users -->
+                        {% if current_page == "admin-users" %}
+                            <a class="navbar-item is-active" href="/admin/users">Users</a>
+                        {% else %}
+                            <a class="navbar-item" href="/admin/users">Users</a>
+                        {% endif %}
+
+                        <!-- Roles -->
+                        {% if current_page == "admin-roles" %}
+                            <a class="navbar-item is-active" href="/admin/roles">Roles</a>
+                        {% else %}
+                            <a class="navbar-item" href="/admin/roles">Roles</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+
+    <!-- Main navbar -->
+    {% else %}
+        <nav class="navbar is-primary">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a class="navbar-item is-bold" href="/admin">Main</a>
+                </div>
+                <div id="navMenu" class="navbar-menu">
+                    <div class="navbar-end">
+                        <a href="/admin" class="navbar-item">Admin</a>
+                        <a href="/trucks" class="navbar-item">Trucks</a>
+                        <a href="/employees" class="navbar-item">Employees</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    {% endif %}
+{%- endmacro %}
