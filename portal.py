@@ -1,6 +1,7 @@
 import os
 
-from flask_migrate import Migrate, migrate, upgrade
+from alembic.util.exc import CommandError
+from flask_migrate import Migrate, init, migrate, upgrade
 
 from app import RouteManager
 
@@ -16,9 +17,14 @@ db = manager.db
 # Migrate and create tables
 Migrate(app, db)
 with app.app_context():
-    upgrade()   # Make sure the database is up to date.
-    migrate()   # Make any migrations that might be necessary.
-    upgrade()   # Apply the new migration, if one was made.
+    try:
+        upgrade()   # Make sure the database is up to date.
+        migrate()   # Make any migrations that might be necessary.
+        upgrade()   # Apply the new migration, if one was made.
+    except CommandError as e:
+
+        if "Please use the 'init' command" in str(e):
+            init()      # Gotta set up migrations first.
 
 # Should we auto reload when templates change?
 if app.config['TEMPLATES_AUTO_RELOAD']:

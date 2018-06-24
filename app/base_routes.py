@@ -46,18 +46,16 @@ class BaseView(MethodView):
         access_perms = model_access_perms[user_group]
 
         # Unpack models
-        models = {}
+        all_models = {}
         for model_type, models in access_perms.items():
             model_list = []
 
             for model in models:
                 model_list.append(model.query.all())
 
-            models[model_type] = model_list
+            all_models[model_type] = model_list
 
-        context["models"] = models
-
-        print(context["models"])
+        context["models"] = all_models
 
         return render_template(template_names, **context)
 
