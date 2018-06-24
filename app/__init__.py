@@ -51,7 +51,7 @@ class RouteManager:
                 domain_name = request.headers['Host'].split(".")[1]
 
             # Set the default if the selected one has no accompanying scss file.
-            if f"{domain_name}.scss" not in os.listdir("app/static/scss/brandings"):
+            if domain_name not in os.listdir("app/static/scss/brandings"):
                 domain_name = "default"
 
             return dict(domain_name=domain_name)
