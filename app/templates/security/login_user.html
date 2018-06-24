@@ -4,6 +4,10 @@
     <script src="{{ url_for('static', filename='js/login.js') }}"></script>
 {% endblock %}
 
+{% block user_style %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='scss/brandings/' + domain_name + '/login.css') }}"/>
+{% endblock %}
+
 {% block body %}
 
     <!-- These are primitives for the curved shape on the left side. -->

@@ -1,10 +1,5 @@
 /*
-    Branding for KPM Transport. This branding is loaded if you go to portal.kpmtransport.no.
-
-    PLEASE NOTE: DO NOT CHANGE THE .CSS FILE MANUALLY.
-    ALL CHANGES MUST BE MADE IN THE .SCSS FILES, OR THEY WILL BE OVERWRITTEN.
-
-    See https://sass-lang.com/guide for more info if you don't know what SCSS is.
+    All changes to colors for this client must be made in this file, and this file only.
 */
 /* Certain variables, such as $primary-color and $secondary-color
    are declared inside the branding for the specific domain.       */
@@ -136,4 +131,4 @@ ul.flashes {
   margin-top: 1%;
   color: #910911; }
 
-/*# sourceMappingURL=default.css.map */
+/*# sourceMappingURL=login.css.map */
