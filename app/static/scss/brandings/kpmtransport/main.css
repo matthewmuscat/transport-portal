@@ -6594,4 +6594,11 @@ label.panel-block {
 a.navbar-item.is-bold {
   font-weight: bold; }
 
+div.container.buttons-above-table {
+  margin-top: 2em;
+  margin-bottom: 0.5em; }
+
+table.table.has-pointer {
+  cursor: pointer; }
+
 /*# sourceMappingURL=main.css.map */

@@ -18,15 +18,15 @@
 
 // Extensions
 %login-field {
-  @include transition(border, 500ms);
+  @include transition(background, 500ms);
   float: none;
   position: static;
   clear: none;
   width: 90%;
   height: 2.5em;
   border-radius: 4px;
-  background-color: transparent;
-  color: white;
+  background: transparent;
+  color: #222222;
   font-weight: bold;
   text-indent: 10px;
   margin: 0px auto 7px auto;
@@ -117,8 +117,8 @@ form input[type=password] {
 form input[type=field]:focus,
 form input[type=password]:focus {
   @extend %login-field;
-  @include transition(border, 500ms);
-  border: 2px solid #344344;
+  @include transition(background-color, 500ms);
+  background: rgba(255, 255, 255, 0.2)
 }
 
 // The remember me checkbox
@@ -154,7 +154,7 @@ img {
 }
 
 // The error messages below
-ul.flashes {
-  margin-top: 1%;
+div.flashes {
+  margin-top: 3%;
   color: #910911;
 }

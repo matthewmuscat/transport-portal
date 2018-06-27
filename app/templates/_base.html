@@ -12,7 +12,9 @@
 			  src="https://code.jquery.com/jquery-3.3.1.min.js"
 			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 			  crossorigin="anonymous"></script>
-            {% block user_scripts %}{% endblock %}
+            {% block user_scripts %}
+                <script defer src="{{ url_for('static', filename='js/main.js') }}"></script>
+            {% endblock %}
             <title>{% block title %}{% endblock %}</title>
         {% endblock %}
     </head>
