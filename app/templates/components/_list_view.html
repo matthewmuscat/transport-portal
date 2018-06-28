@@ -2,7 +2,6 @@
 {% import "_macros.html" as macros %}
 
 {% block title %}
-    No title set!
 {% endblock %}
 
 {% block body %}
@@ -14,7 +13,6 @@
     <div class="container buttons-above-table">
         <a class="button is-success">
             {% block new_model_text %}
-                + New model text not configured
             {% endblock %}
         </a>
     </div>
@@ -31,17 +29,6 @@
         ">
 
             {% block table_data %}
-                <tr>
-                    <th>NO</th>
-                    <th>TABLE</th>
-                    <th>DATA</th>
-                </tr>
-
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
             {% endblock %}
         </table>
     </div>

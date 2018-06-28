@@ -9,45 +9,68 @@
 {% endblock %}
 
 {% block input_fields %}
+
+    <!-- Active -->
+    <div class="field is-pulled-right">
+        <input
+                id="user-active"
+                type="checkbox"
+                class="switch is-rounded is-success"
+                checked="{{ user.active }}"
+        >
+        <label for="user-active">
+            Active
+        </label>
+    </div>
+
     <!-- Email -->
     <div class="field">
         <label class="label">Email</label>
-        <div class="control">
+        <p class="control has-icons-left">
             <input
                     class="input"
                     type="email"
                     placeholder="name@email.com"
                     value="{{ user.email }}"
             >
-        </div>
+            <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+            </span>
+        </p>
     </div>
 
     <!-- Group -->
     <div class="field">
         <label class="label">Group</label>
-        <div class="control">
+        <p class="control has-icons-left">
             <input
                     class="input"
                     type="text"
                     placeholder="kpm_transport"
                     value="{{ user.group }}"
             >
-        </div>
-    </div>
-
-    <!-- Active -->
-    <div class="field">
-        <label class="label">Active</label>
-        <div class="control">
-            <input type="checkbox" checked="{{ user.active }}">
-        </div>
+            <span class="icon is-small is-left">
+                <i class="fas fa-users"></i>
+            </span>
+        </p>
     </div>
 
     <!-- Confirmed at -->
     <div class="field">
         <label class="label">Confirmed at</label>
-        <div class="control">
-            <input class="input is-disabled" type="text" value="{{ user.confirmed_at }}">
-        </div>
+        <p class="control has-icons-left">
+            <input class="input" type="text" value="{{ user.confirmed_at }}" disabled>
+            <span class="icon is-small is-left">
+                <i class="fas fa-clock"></i>
+            </span>
+        </p>
     </div>
+
+    <!-- Save button -->
+    <div class="control is-pulled-right">
+        <button class="button is-danger">Delete</button>
+        <button class="button is-success">Save</button>
+    </div>
+
+
 {% endblock %}
