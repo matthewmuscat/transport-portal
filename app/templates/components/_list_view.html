@@ -1,0 +1,48 @@
+{% extends "_base.html" %}
+{% import "_macros.html" as macros %}
+
+{% block title %}
+    No title set!
+{% endblock %}
+
+{% block body %}
+
+    <!-- Navbar -->
+    {% include "components/_navbar.html" %}
+
+    <!-- Button for creating a new item -->
+    <div class="container buttons-above-table">
+        <a class="button is-success">
+            {% block new_model_text %}
+                + New model text not configured
+            {% endblock %}
+        </a>
+    </div>
+
+    <div class="container">
+        <table class="
+            table
+            is-bordered
+            is-striped
+            is-fullwidth
+            is-hoverable
+            has-pointer
+            is-model-list
+        ">
+
+            {% block table_data %}
+                <tr>
+                    <th>NO</th>
+                    <th>TABLE</th>
+                    <th>DATA</th>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            {% endblock %}
+        </table>
+    </div>
+{% endblock %}

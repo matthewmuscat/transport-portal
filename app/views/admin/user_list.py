@@ -2,10 +2,10 @@ from app.base_routes import RouteView
 from app.models.security import User
 
 
-class UserAdminView(RouteView):
+class UserListView(RouteView):
     path = "/admin/users"
-    name = "users"
-    template = "admin/users.html"
+    name = "user_list"
+    template = "admin/user_list.html"
 
     def get(self):
         """

@@ -6601,4 +6601,7 @@ div.container.buttons-above-table {
 table.table.has-pointer {
   cursor: pointer; }
 
+div.columns.has-top-space {
+  margin-top: 2em; }
+
 /*# sourceMappingURL=main.css.map */

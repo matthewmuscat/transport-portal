@@ -1,12 +1,20 @@
+// boldable navbar links
 a.navbar-item.is-bold {
   font-weight: bold;
 }
 
+// Spacing for the + New Model button containers
 div.container.buttons-above-table {
   margin-top:2em;
   margin-bottom:0.5em;
 }
 
+// When hovering table, show pointer instead of cursor
 table.table.has-pointer {
   cursor: pointer;
+}
+
+// top space
+div.columns.has-top-space {
+  margin-top:2em;
 }

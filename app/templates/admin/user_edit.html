@@ -1,0 +1,53 @@
+{% extends "components/_edit_view.html" %}
+
+{% block title %}
+    User edit
+{% endblock %}
+
+{% block headline %}
+    Edit user: {{ user.email }}
+{% endblock %}
+
+{% block input_fields %}
+    <!-- Email -->
+    <div class="field">
+        <label class="label">Email</label>
+        <div class="control">
+            <input
+                    class="input"
+                    type="email"
+                    placeholder="name@email.com"
+                    value="{{ user.email }}"
+            >
+        </div>
+    </div>
+
+    <!-- Group -->
+    <div class="field">
+        <label class="label">Group</label>
+        <div class="control">
+            <input
+                    class="input"
+                    type="text"
+                    placeholder="kpm_transport"
+                    value="{{ user.group }}"
+            >
+        </div>
+    </div>
+
+    <!-- Active -->
+    <div class="field">
+        <label class="label">Active</label>
+        <div class="control">
+            <input type="checkbox" checked="{{ user.active }}">
+        </div>
+    </div>
+
+    <!-- Confirmed at -->
+    <div class="field">
+        <label class="label">Confirmed at</label>
+        <div class="control">
+            <input class="input is-disabled" type="text" value="{{ user.confirmed_at }}">
+        </div>
+    </div>
+{% endblock %}
