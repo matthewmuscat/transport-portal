@@ -7044,7 +7044,11 @@ div.container.buttons-above-table {
 table.table.has-pointer {
   cursor: pointer; }
 
-div.columns.has-top-space {
-  margin-top: 2em; }
+div.columns.has-top-space,
+div.control.has-top-space {
+  margin-top: 1.5em; }
+
+button.button.is-spaced {
+  margin-left: 0.5em; }
 
 /*# sourceMappingURL=main.css.map */

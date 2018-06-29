@@ -5,8 +5,8 @@ a.navbar-item.is-bold {
 
 // Spacing for the + New Model button containers
 div.container.buttons-above-table {
-  margin-top:2em;
-  margin-bottom:0.5em;
+  margin-top: 2em;
+  margin-bottom: 0.5em;
 }
 
 // When hovering table, show pointer instead of cursor
@@ -14,7 +14,14 @@ table.table.has-pointer {
   cursor: pointer;
 }
 
-// top space
-div.columns.has-top-space {
-  margin-top:2em;
+// top space for columns and controls
+div.columns.has-top-space,
+div.control.has-top-space {
+  margin-top: 1.5em;
 }
+
+// spacing between buttons
+button.button.is-spaced {
+  margin-left: 0.5em;
+}
+
