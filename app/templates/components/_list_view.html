@@ -1,5 +1,4 @@
 {% extends "_base.html" %}
-{% import "_macros.html" as macros %}
 
 {% block title %}
 {% endblock %}
@@ -11,7 +10,10 @@
 
     <!-- Button for creating a new item -->
     <div class="container buttons-above-table">
-        <a class="button is-success">
+        <a
+            href="{% block new_model_url %}#{% endblock %}"
+            class="button is-success"
+        >
             {% block new_model_text %}
             {% endblock %}
         </a>

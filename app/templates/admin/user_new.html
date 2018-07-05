@@ -1,11 +1,11 @@
 {% extends "components/_edit_view.html" %}
 
 {% block title %}
-    Edit user
+    New user
 {% endblock %}
 
 {% block headline %}
-    Edit user: {{ user.email }}
+    New user
 {% endblock %}
 
 {% block input_fields %}
@@ -16,7 +16,6 @@
                 id="user-active"
                 type="checkbox"
                 class="switch is-rounded is-success"
-                checked="{{ user.active }}"
         >
         <label for="user-active">
             Active
@@ -31,10 +30,23 @@
                     class="input"
                     type="email"
                     placeholder="name@email.com"
-                    value="{{ user.email }}"
             >
             <span class="icon is-small is-left">
                 <i class="fas fa-envelope"></i>
+            </span>
+        </p>
+    </div>
+
+    <!-- Password -->
+    <div class="field">
+        <label class="label">Password</label>
+        <p class="control has-icons-left">
+            <input
+                    class="input"
+                    type="password"
+            >
+            <span class="icon is-small is-left">
+                <i class="fas fa-key"></i>
             </span>
         </p>
     </div>
@@ -47,7 +59,6 @@
                     class="input"
                     type="text"
                     placeholder="kpm_transport"
-                    value="{{ user.group }}"
             >
             <span class="icon is-small is-left">
                 <i class="fas fa-users"></i>
@@ -55,20 +66,8 @@
         </p>
     </div>
 
-    <!-- Confirmed at -->
-    <div class="field">
-        <label class="label">Confirmed at</label>
-        <p class="control has-icons-left">
-            <input class="input" type="text" value="{{ user.confirmed_at }}" disabled>
-            <span class="icon is-small is-left">
-                <i class="fas fa-clock"></i>
-            </span>
-        </p>
-    </div>
-
     <!-- Buttons -->
     <div class="control has-top-space">
-        <button class="button is-danger is-pulled-left">Delete</button>
         <button class="button is-success is-pulled-right is-spaced">Save</button>
         <button class="button is-dark is-pulled-right">Cancel</button>
     </div>
