@@ -25,3 +25,7 @@ button.button.is-spaced {
   margin-left: 0.5em;
 }
 
+// right margin for labels of rounded switches if pulled right
+div.is-pulled-right input.switch.is-rounded + label {
+  margin-right: 5px;
+}

@@ -1,4 +1,5 @@
 {% extends "components/_edit_view.html" %}
+{% import "components/_inputs.html" as inputs %}
 
 {% block title %}
     Edit user
@@ -11,67 +12,56 @@
 {% block input_fields %}
 
     <!-- Active -->
-    <div class="field is-pulled-right">
-        <input
-                id="user-active"
-                type="checkbox"
-                class="switch is-rounded is-success"
-                checked="{{ user.active }}"
-        >
-        <label for="user-active">
-            Active
-        </label>
-    </div>
+    {{
+        inputs.switch(
+            id="user-active",
+            label="Active",
+            checked=user.active,
+            is_pulled_right=True
+        )
+    }}
 
     <!-- Email -->
-    <div class="field">
-        <label class="label">Email</label>
-        <p class="control has-icons-left">
-            <input
-                    class="input"
-                    type="email"
-                    placeholder="name@email.com"
-                    value="{{ user.email }}"
-            >
-            <span class="icon is-small is-left">
-                <i class="fas fa-envelope"></i>
-            </span>
-        </p>
-    </div>
+    {{
+        inputs.field(
+            label="Email",
+            type="email",
+            placeholder="name@email.com",
+            value=user.email,
+            icon="fa-envelope"
+        )
+    }}
 
     <!-- Group -->
-    <div class="field">
-        <label class="label">Group</label>
-        <p class="control has-icons-left">
-            <input
-                    class="input"
-                    type="text"
-                    placeholder="kpm_transport"
-                    value="{{ user.group }}"
-            >
-            <span class="icon is-small is-left">
-                <i class="fas fa-users"></i>
-            </span>
-        </p>
-    </div>
+    {{
+        inputs.field(
+            label="Group",
+            type="text",
+            placeholder="kpm_transport",
+            value=user.group,
+            icon="fa-users"
+        )
+    }}
 
     <!-- Confirmed at -->
-    <div class="field">
-        <label class="label">Confirmed at</label>
-        <p class="control has-icons-left">
-            <input class="input" type="text" value="{{ user.confirmed_at }}" disabled>
-            <span class="icon is-small is-left">
-                <i class="fas fa-clock"></i>
-            </span>
-        </p>
-    </div>
+    {{
+        inputs.field(
+            label="Confirmed at",
+            type="text",
+            value=user.confirmed_at,
+            icon="fa-clock",
+            disabled=True
+        )
+    }}
 
     <!-- Buttons -->
-    <div class="control has-top-space">
-        <button class="button is-danger is-pulled-left">Delete</button>
-        <button class="button is-success is-pulled-right is-spaced">Save</button>
-        <button class="button is-dark is-pulled-right">Cancel</button>
-    </div>
+    {{
+        inputs.buttons(
+            delete=True,
+            save=True,
+            cancel=True
+        )
+    }}
 
 
 {% endblock %}

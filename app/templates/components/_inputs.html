@@ -1,0 +1,77 @@
+<!-- Input macros -->
+{% macro switch(id, label, checked=None, is_pulled_right=False) -%}
+    {% if is_pulled_right %}
+        <div class="field is-pulled-right">
+    {% else %}
+        <div class="field">
+    {% endif %}
+            <input
+                    id="{{ id }}"
+                    type="checkbox"
+                    class="switch is-rounded is-success is-rtl"
+                    {% if checked %}
+                        checked="{{ checked }}"
+                    {% endif %}
+            >
+            <label for="{{ id }}">
+                {{ label }}
+            </label>
+        </div>
+{%- endmacro %}
+
+
+{% macro field(label, type="text", placeholder=None, value=None, icon=None, disabled=False) -%}
+    <div class="field">
+        <label class="label">{{ label }}</label>
+        {% if icon %}
+            <p class="control has-icons-left">
+        {% else %}
+            <p class="control">
+        {% endif %}
+                <input
+                        class="input"
+                        type="{{ type }}"
+
+                        {% if placeholder %}
+                            placeholder="{{ placeholder }}"
+                        {% endif %}
+
+                        {% if value %}
+                            value="{{ value }}"
+                        {% endif %}
+
+                        {% if disabled %}
+                            disabled
+                        {% endif %}
+                >
+                {% if icon %}
+                    <span class="icon is-small is-left">
+                        <i class="fas {{ icon }}"></i>
+                    </span>
+                {% endif %}
+            </p>
+    </div>
+{%- endmacro %}
+
+{% macro buttons(delete=None, save=None, cancel=None) -%}
+    <div class="control has-top-space">
+
+        {% if delete %}
+            <button class="button is-danger is-pulled-left">
+                Delete
+            </button>
+        {% endif %}
+
+        {% if save %}
+            <button class="button is-success is-pulled-right is-spaced">
+                Save
+            </button>
+        {% endif %}
+
+        {% if cancel %}
+            <button class="button is-dark is-pulled-right">
+                Cancel
+            </button>
+        {% endif %}
+    </div>
+{%- endmacro %}

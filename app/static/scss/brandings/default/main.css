@@ -7051,4 +7051,7 @@ div.control.has-top-space {
 button.button.is-spaced {
   margin-left: 0.5em; }
 
+div.is-pulled-right input.switch.is-rounded + label {
+  margin-right: 5px; }
+
 /*# sourceMappingURL=main.css.map */
