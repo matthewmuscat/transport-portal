@@ -4,7 +4,7 @@ from app.models.security import User
 
 class UserEditView(RouteView):
     path = "/admin/users/edit/<int:user_id>"
-    name = "user_edit"
+    name = "user/edit"
     template = "admin/user_edit.html"
 
     def get(self, user_id):

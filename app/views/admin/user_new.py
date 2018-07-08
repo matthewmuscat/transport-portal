@@ -2,8 +2,8 @@ from app.base_routes import RouteView
 
 
 class UserNewView(RouteView):
-    path = "/admin/users/create"
-    name = "create_user"
+    path = "/admin/users/new"
+    name = "user/new"
     template = "admin/user_new.html"
 
     def get(self):

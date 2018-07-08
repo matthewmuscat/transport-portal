@@ -12,7 +12,7 @@
 
 <!-- Button URL href for creating a new item -->
 {% block new_model_url %}
-    /admin/users/create
+    {{ url_for("admin.user/new") }}
 {% endblock %}
 
 {% block table_data %}

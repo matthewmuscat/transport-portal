@@ -101,7 +101,7 @@ class RouteView(BaseView):
             raise RuntimeError("Route views must have both `path` and `name` defined")
 
         blueprint.add_url_rule(cls.path, view_func=cls.as_view(cls.name))
-        cls.name = f"{blueprint.name}-{cls.name}"  # Add blueprint to page name
+        cls.name = f"{blueprint.name}/{cls.name}"  # Add blueprint to page name
 
 
 class ErrorView(BaseView):

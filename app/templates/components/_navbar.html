@@ -9,14 +9,14 @@
                 <div class="navbar-end">
                     <!-- Users -->
                     {% if current_page == "admin-users" %}
-                        <a class="navbar-item is-active" href="/admin/users">Users</a>
+                        <a class="navbar-item is-active" href="{{ url_for("admin.user/list") }}">Users</a>
                     {% else %}
-                        <a class="navbar-item" href="/admin/users">Users</a>
+                        <a class="navbar-item" href="{{ url_for("admin.user/list") }}">Users</a>
                     {% endif %}
 
                     <!-- Roles -->
                     {% if current_page == "admin-roles" %}
-                        <a class="navbar-item is-active" href="/admin/roles">Roles</a>
+                        <a class="navbar-item is-active" href="{{ url_for("admin.roles/list") }}">Roles</a>
                     {% else %}
                         <a class="navbar-item" href="/admin/roles">Roles</a>
                     {% endif %}

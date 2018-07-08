@@ -53,13 +53,32 @@
     </div>
 {%- endmacro %}
 
-{% macro buttons(delete=None, save=None, cancel=None) -%}
+{% macro buttons(save=False, delete_page=None, cancel_page=None) -%}
+    <!--
+    A macro to generate buttons for an EditView or a NewView.
+    All buttons are optional, so just omit the ones you don't need.
+
+    Parameters:
+    delete_page  A button to delete the object.
+                 You should pass a url_for name to
+                 the correct DeleteView.
+
+    save         A submit button to save the object.
+                 You should pass True if you want this.
+
+    cancel_page  A button to return to the ListView.
+                 You should pass a url_for name for
+                 the correct ListView.
+    -->
+
     <div class="control has-top-space">
 
-        {% if delete %}
-            <button class="button is-danger is-pulled-left">
-                Delete
-            </button>
+        {% if delete_page %}
+            <a href="{{ url_for(delete_page) }}">
+                <button class="button is-danger is-pulled-left">
+                    Delete
+                </button>
+            </a>
         {% endif %}
 
         {% if save %}
@@ -68,10 +87,12 @@
             </button>
         {% endif %}
 
-        {% if cancel %}
-            <button class="button is-dark is-pulled-right">
-                Cancel
-            </button>
+        {% if cancel_page %}
+            <a href="{{ url_for(cancel_page) }}">
+                <button class="button is-dark is-pulled-right">
+                    Cancel
+                </button>
+            </a>
         {% endif %}
     </div>
 {%- endmacro %}
