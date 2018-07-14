@@ -29,3 +29,9 @@ button.button.is-spaced {
 div.is-pulled-right input.switch.is-rounded.is-rtl + label {
   margin-right: 5px;
 }
+
+// making a frame for model images
+img.is-model-image {
+  border: 1px solid #bfbfbf;
+  border-radius: 15px 50px;
+}

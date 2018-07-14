@@ -5,7 +5,7 @@ from app.models.security import User
 class UserListView(RouteView):
     path = "/admin/users"
     name = "user/list"
-    template = "admin/user_list.html"
+    template = "admin/user/list.html"
 
     def get(self):
         """

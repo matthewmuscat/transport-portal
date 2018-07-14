@@ -1,0 +1,31 @@
+{% extends "components/model_views/_detail.html" %}
+{% import "components/_inputs.html" as inputs %}
+
+{% block title %}
+    Edit user
+{% endblock %}
+
+{% block headline %}
+    {{ user.email }}
+{% endblock %}
+
+{% block image %}
+    <img
+        src="https://media.gq.com/photos/563bcc296ff00fb522b05308/3:2/w_560/hat-with-suits.jpg"
+        class="is-model-image"
+    >
+{% endblock %}
+
+{% block table_data %}
+
+    <!-- Table data -->
+    <tr>
+        <td class="is-hidden">{{ user.id }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.group }}</td>
+        <td>{{ user.active }}</td>
+        <td>{{ user.confirmed_at }}</td>
+        <td>{{ ", ".join(user.roles) }}</td>
+    </tr>
+
+{% endblock %}

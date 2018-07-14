@@ -1,0 +1,53 @@
+{% extends "_base.html" %}
+
+{% block title %}
+    Users
+{% endblock %}
+
+{% block body %}
+
+    <!-- Navbar -->
+    {% include "components/_navbar.html" %}
+
+    <div class="columns has-top-space">
+
+        <!-- Spacer flexbox on the left -->
+        <div class="column is-one-fifth"></div>
+
+
+
+        <!-- Content flexbox -->
+        <div class="column">
+            <div class="columns">
+
+                <!-- Image flexbox -->
+                <div class="column">
+                    {% block image %}
+                    {% endblock %}
+                </div>
+
+                <!-- Spacer flexbox in the middle -->
+                <div class="column is-one-fifth"></div>
+
+                <!-- Content flexbox -->
+                <div class="column">
+                    <table class="
+                        table
+                        is-bordered
+                        is-striped
+                        is-fullwidth
+                        is-hoverable
+                        has-pointer
+                        is-model-list
+                    ">
+                        {% block table_data %}
+                        {% endblock %}
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Spacer flexbox on the right -->
+        <div class="column is-one-fifth"></div>
+    </div>
+{% endblock %}

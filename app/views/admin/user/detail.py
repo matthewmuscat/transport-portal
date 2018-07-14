@@ -2,10 +2,10 @@ from app.base_routes import RouteView
 from app.models.security import User
 
 
-class UserEditView(RouteView):
-    path = "/admin/users/edit/<int:user_id>"
-    name = "user/edit"
-    template = "admin/user_edit.html"
+class UserDetailView(RouteView):
+    path = "/admin/users/<int:user_id>"
+    name = "user/detail"
+    template = "admin/user/detail.html"
 
     def get(self, user_id):
         """

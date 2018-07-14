@@ -4,7 +4,7 @@ from app.base_routes import RouteView
 class UserNewView(RouteView):
     path = "/admin/users/new"
     name = "user/new"
-    template = "admin/user_new.html"
+    template = "admin/user/new.html"
 
     def get(self):
         """
@@ -12,3 +12,10 @@ class UserNewView(RouteView):
         """
 
         return self.render(self.template)
+
+    def post(self):
+        """
+        Create a user and redirect to the detailview
+        :return:
+        """
+        pass
