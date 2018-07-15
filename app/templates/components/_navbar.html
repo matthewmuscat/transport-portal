@@ -8,15 +8,15 @@
             <div id="navMenu" class="navbar-menu">
                 <div class="navbar-end">
                     <!-- Users -->
-                    {% if current_page == "admin-users" %}
+                    {% if "user" in current_page  %}
                         <a class="navbar-item is-active" href="{{ url_for("admin.user/list") }}">Users</a>
                     {% else %}
                         <a class="navbar-item" href="{{ url_for("admin.user/list") }}">Users</a>
                     {% endif %}
 
                     <!-- Roles -->
-                    {% if current_page == "admin-roles" %}
-                        <a class="navbar-item is-active" href="{{ url_for("admin.roles/list") }}">Roles</a>
+                    {% if "role" in current_page %}
+                        <a class="navbar-item is-active" href="{{ url_for("admin.role/list") }}">Roles</a>
                     {% else %}
                         <a class="navbar-item" href="/admin/roles">Roles</a>
                     {% endif %}
