@@ -14,13 +14,11 @@
         <!-- Spacer flexbox on the left -->
         <div class="column is-one-fifth"></div>
 
-
-
         <!-- Content flexbox -->
         <div class="column">
             <div class="columns">
 
-                <!-- Image flexbox -->
+                <!-- Image flexbox on the left -->
                 <div class="column">
                     {% block image %}
                     {% endblock %}
@@ -31,18 +29,8 @@
 
                 <!-- Content flexbox -->
                 <div class="column">
-                    <table class="
-                        table
-                        is-bordered
-                        is-striped
-                        is-fullwidth
-                        is-hoverable
-                        has-pointer
-                        is-model-list
-                    ">
-                        {% block table_data %}
-                        {% endblock %}
-                    </table>
+                    {% block infobox %}
+                    {% endblock %}
                 </div>
             </div>
         </div>

@@ -1,0 +1,27 @@
+{% macro infobox(user_info, title) -%}
+    <!--
+    Generate an infobox, like in a wikipedia article.
+
+    user_info    A dictionary with the labels as the keys,
+                 and the actual info as the values.
+    -->
+
+    <div class="box">
+        <h2 class="title">
+            {{ title }}
+        </h2>
+        <table>
+            {% for label, data in user_info.items() %}
+                <tr>
+                    <td class="has-right-padding">
+                        <strong>{{ label }}</strong>
+                    </td>
+                    <td>
+                        {{ data }}
+                    </td>
+                </tr>
+            {%  endfor %}
+        </table>
+    </div>
+
+{%- endmacro %}

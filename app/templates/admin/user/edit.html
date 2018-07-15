@@ -55,13 +55,41 @@
     }}
 
     <!-- Buttons -->
-    {{
-        inputs.buttons(
-            save=True,
-            delete_page="admin.user/list",
-            cancel_page="admin.user/list"
-        )
-    }}
+    <div class="control has-top-space">
+
+        <!-- Delete button -->
+        {{
+            inputs.button(
+                label="Delete",
+                href="#",
+                type="is-danger",
+                is_pulled_left=True
+            )
+        }}
+
+        <!-- Save button -->
+        {{
+            inputs.button(
+                label="Save",
+                href="#",
+                type="is-success",
+                is_pulled_right=True,
+                has_margin_left=True
+            )
+        }}
+
+
+        <!-- Cancel button -->
+        {{
+            inputs.button(
+                label="Cancel",
+                href=url_for("admin.user/list"),
+                type="is-dark",
+                is_pulled_right=True
+            )
+        }}
+
+    </div>
 
 
 {% endblock %}

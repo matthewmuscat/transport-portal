@@ -1,4 +1,5 @@
 {% extends "components/model_views/_edit.html" %}
+{% import "components/_inputs.html" as inputs %}
 
 {% block title %}
     New user
@@ -68,8 +69,29 @@
 
     <!-- Buttons -->
     <div class="control has-top-space">
-        <button class="button is-success is-pulled-right is-spaced">Save</button>
-        <button class="button is-dark is-pulled-right">Cancel</button>
+
+        <!-- Save button -->
+        {{
+            inputs.button(
+                label="Save",
+                href="#",
+                type="is-success",
+                is_pulled_right=True,
+                has_margin_left=True
+            )
+        }}
+
+
+        <!-- Cancel button -->
+        {{
+            inputs.button(
+                label="Cancel",
+                href=url_for("admin.user/list"),
+                type="is-dark",
+                is_pulled_right=True
+            )
+        }}
+
     </div>
 
 

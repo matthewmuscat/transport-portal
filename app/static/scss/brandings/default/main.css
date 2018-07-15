@@ -7048,7 +7048,7 @@ div.columns.has-top-space,
 div.control.has-top-space {
   margin-top: 1.5em; }
 
-button.button.is-spaced {
+button.button.has-margin-left {
   margin-left: 0.5em; }
 
 div.is-pulled-right input.switch.is-rounded.is-rtl + label {
@@ -7057,5 +7057,8 @@ div.is-pulled-right input.switch.is-rounded.is-rtl + label {
 img.is-model-image {
   border: 1px solid #bfbfbf;
   border-radius: 15px 50px; }
+
+td.has-right-padding {
+  padding-right: 2em; }
 
 /*# sourceMappingURL=main.css.map */

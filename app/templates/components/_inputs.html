@@ -53,46 +53,32 @@
     </div>
 {%- endmacro %}
 
-{% macro buttons(save=False, delete_page=None, cancel_page=None) -%}
-    <!--
-    A macro to generate buttons for an EditView or a NewView.
-    All buttons are optional, so just omit the ones you don't need.
 
-    Parameters:
-    delete_page  A button to delete the object.
-                 You should pass a url_for name to
-                 the correct DeleteView.
+{% macro button(label, type, href="#", id=None, is_pulled_left=False,
+                is_pulled_right=False, has_margin_left=False) -%}
 
-    save         A submit button to save the object.
-                 You should pass True if you want this.
+    <a href={{ href }}>
+        <button
+            class="
+                button
 
-    cancel_page  A button to return to the ListView.
-                 You should pass a url_for name for
-                 the correct ListView.
-    -->
+                {{ type }}
 
-    <div class="control has-top-space">
+                {% if is_pulled_right %}
+                    is-pulled-right
+                {% elif is_pulled_left %}
+                    is-pulled-left
+                {% endif %}
 
-        {% if delete_page %}
-            <a href="{{ url_for(delete_page) }}">
-                <button class="button is-danger is-pulled-left">
-                    Delete
-                </button>
-            </a>
-        {% endif %}
-
-        {% if save %}
-            <button class="button is-success is-pulled-right is-spaced">
-                Save
-            </button>
-        {% endif %}
-
-        {% if cancel_page %}
-            <a href="{{ url_for(cancel_page) }}">
-                <button class="button is-dark is-pulled-right">
-                    Cancel
-                </button>
-            </a>
-        {% endif %}
-    </div>
+                {% if has_margin_left %}
+                    has-margin-left
+                {% endif %}
+            "
+            {% if id %}
+                id={{ id }}
+            {% endif %}
+        >
+            {{ label }}
+        </button>
+    </a>
 {%- endmacro %}

@@ -21,7 +21,7 @@ div.control.has-top-space {
 }
 
 // spacing between buttons
-button.button.is-spaced {
+button.button.has-margin-left {
   margin-left: 0.5em;
 }
 
@@ -34,4 +34,9 @@ div.is-pulled-right input.switch.is-rounded.is-rtl + label {
 img.is-model-image {
   border: 1px solid #bfbfbf;
   border-radius: 15px 50px;
+}
+
+// right margin on table cell
+td.has-right-padding {
+  padding-right: 2em;
 }

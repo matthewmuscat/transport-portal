@@ -1,5 +1,6 @@
 {% extends "components/model_views/_detail.html" %}
 {% import "components/_inputs.html" as inputs %}
+{% import "components/_elements.html" as elements %}
 
 {% block title %}
     Edit user
@@ -16,16 +17,44 @@
     >
 {% endblock %}
 
-{% block table_data %}
+{% block infobox %}
 
-    <!-- Table data -->
-    <tr>
-        <td class="is-hidden">{{ user.id }}</td>
-        <td>{{ user.email }}</td>
-        <td>{{ user.group }}</td>
-        <td>{{ user.active }}</td>
-        <td>{{ user.confirmed_at }}</td>
-        <td>{{ ", ".join(user.roles) }}</td>
-    </tr>
+    <!-- Building a user info dict -->
+    {%-  set user_info = {
+            "Email": user.email,
+            "Group": user.group,
+            "Roles": ", ".join(user.roles)
+         }
+    -%}
+
+    <!-- Constructing an infobox with that user info -->
+    {{ elements.infobox(user_info, user.email) }}
+
+    <!-- Buttons below the infobox -->
+    <div class="control has-top-space">
+
+        <!-- Delete button -->
+        {{
+            inputs.button(
+                label="Delete",
+                href="#",
+                type="is-danger",
+                is_pulled_right=True,
+                has_margin_left=True
+            )
+        }}
+
+        <!-- Edit button -->
+        {{
+            inputs.button(
+                label="Edit",
+                href=url_for("admin.user/edit", user_id=user.id),
+                type="is-info",
+                is_pulled_right=True
+            )
+        }}
+
+    </div>
+
 
 {% endblock %}
