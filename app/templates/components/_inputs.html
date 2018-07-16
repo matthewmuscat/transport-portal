@@ -54,8 +54,9 @@
 {%- endmacro %}
 
 
-{% macro button(label, type, href="#", id=None, is_pulled_left=False,
-                is_pulled_right=False, has_margin_left=False) -%}
+{% macro button(label, type, custom_classes=[], href="#", id=None,
+                is_pulled_left=False, is_pulled_right=False,
+                has_margin_left=False) -%}
 
     <a href={{ href }}>
         <button
@@ -73,6 +74,10 @@
                 {% if has_margin_left %}
                     has-margin-left
                 {% endif %}
+
+                {% for class in custom_classes %}
+                    {{ class }}
+                {% endfor %}
             "
             {% if id %}
                 id={{ id }}

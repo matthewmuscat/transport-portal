@@ -1,4 +1,5 @@
 {% extends "_base.html" %}
+{% import "components/_elements.html" as elements %}
 
 {% block title %}
     Users
@@ -8,6 +9,8 @@
 
     <!-- Navbar -->
     {% include "components/_navbar.html" %}
+
+    {{ elements.delete_modal("#", "#") }}
 
     <div class="columns has-top-space">
 

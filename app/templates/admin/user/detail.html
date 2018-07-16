@@ -23,7 +23,9 @@
     {%-  set user_info = {
             "Email": user.email,
             "Group": user.group,
-            "Roles": ", ".join(user.roles)
+            "Roles": ", ".join(user.roles),
+            "Active": user.active,
+            "Created": user.confirmed_at or ""
          }
     -%}
 
@@ -37,7 +39,7 @@
         {{
             inputs.button(
                 label="Delete",
-                href="#",
+                id="model-delete-button",
                 type="is-danger",
                 is_pulled_right=True,
                 has_margin_left=True
