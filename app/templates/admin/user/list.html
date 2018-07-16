@@ -23,7 +23,7 @@
         <th>Email</th>
         <th>Group</th>
         <th>Active</th>
-        <th>Confirmed at</th>
+        <th>Active since</th>
         <th>Roles</th>
     </tr>
 
@@ -33,7 +33,13 @@
             <td class="is-hidden">{{ user.id }}</td>
             <td>{{ user.email }}</td>
             <td>{{ user.group }}</td>
-            <td>{{ user.active }}</td>
+            <td>
+                {% if user.active %}
+                    <i class="fas fa-check-circle"></i>
+                {% else %}
+                    <i class="fas fa-times-circle"></i>
+                {% endif %}
+            </td>
             <td>{{ user.confirmed_at }}</td>
             <td>{{ ", ".join(user.roles) }}</td>
         </tr>

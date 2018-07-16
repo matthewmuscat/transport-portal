@@ -7061,4 +7061,10 @@ img.is-model-image {
 td.has-right-padding {
   padding-right: 2em; }
 
+svg.fa-check-circle {
+  color: #00ba00; }
+
+svg.fa-times-circle {
+  color: red; }
+
 /*# sourceMappingURL=main.css.map */
