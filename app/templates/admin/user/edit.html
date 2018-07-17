@@ -11,85 +11,87 @@
 
 {% block input_fields %}
 
-    <!-- Active -->
-    {{
-        inputs.switch(
-            id="user-active",
-            label="Active",
-            checked=user.active,
-            is_pulled_right=True
-        )
-    }}
+    <form action="#" method="POST" name="register_user_form">
 
-    <!-- Email -->
-    {{
-        inputs.field(
-            label="Email",
-            type="email",
-            placeholder="name@email.com",
-            value=user.email,
-            icon="fa-envelope"
-        )
-    }}
-
-    <!-- Group -->
-    {{
-        inputs.field(
-            label="Group",
-            type="text",
-            placeholder="kpm_transport",
-            value=user.group,
-            icon="fa-users"
-        )
-    }}
-
-    <!-- Confirmed at -->
-    {{
-        inputs.field(
-            label="Confirmed at",
-            type="text",
-            value=user.confirmed_at,
-            icon="fa-clock",
-            disabled=True
-        )
-    }}
-
-    <!-- Buttons -->
-    <div class="control has-top-space">
-
-        <!-- Delete button -->
+        <!-- Active -->
         {{
-            inputs.button(
-                label="Delete",
-                href="#",
-                type="is-danger",
-                is_pulled_left=True
-            )
-        }}
-
-        <!-- Save button -->
-        {{
-            inputs.button(
-                label="Save",
-                href="#",
-                type="is-success",
-                is_pulled_right=True,
-                has_margin_left=True
-            )
-        }}
-
-
-        <!-- Cancel button -->
-        {{
-            inputs.button(
-                label="Cancel",
-                href=url_for("admin.user/list"),
-                type="is-dark",
+            inputs.switch(
+                id="user-active",
+                label="Active",
+                checked=user.active,
                 is_pulled_right=True
             )
         }}
 
-    </div>
+        <!-- Email -->
+        {{
+            inputs.field(
+                label="Email",
+                type="email",
+                placeholder="name@email.com",
+                value=user.email,
+                icon="fa-envelope"
+            )
+        }}
+
+        <!-- Group -->
+        {{
+            inputs.field(
+                label="Group",
+                type="text",
+                placeholder="kpm_transport",
+                value=user.group,
+                icon="fa-users"
+            )
+        }}
+
+        <!-- Confirmed at -->
+        {{
+            inputs.field(
+                label="Confirmed at",
+                type="text",
+                value=user.confirmed_at,
+                icon="fa-clock",
+                disabled=True
+            )
+        }}
+
+        <!-- Buttons -->
+        <div class="control has-top-space">
+
+            <!-- Delete button -->
+            {{
+                inputs.button(
+                    label="Delete",
+                    style="is-danger",
+                    is_pulled_left=True
+                )
+            }}
+
+            <!-- Save button -->
+            {{
+                inputs.button(
+                    label="Save",
+                    type="submit",
+                    style="is-success",
+                    is_pulled_right=True,
+                    has_margin_left=True
+                )
+            }}
+
+
+            <!-- Cancel button -->
+            {{
+                inputs.button(
+                    label="Cancel",
+                    href=url_for("admin.user/list"),
+                    style="is-dark",
+                    is_pulled_right=True
+                )
+            }}
+
+        </div>
+    </form>
 
 
 {% endblock %}

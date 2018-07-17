@@ -12,7 +12,7 @@ else:
     manager = RouteManager("production")
 
 app = manager.app
-db = manager.db
+db = app.db
 
 # Migrate and create tables
 Migrate(app, db)

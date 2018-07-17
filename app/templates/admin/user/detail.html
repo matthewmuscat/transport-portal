@@ -40,7 +40,7 @@
             inputs.button(
                 label="Delete",
                 id="model-delete-button",
-                type="is-danger",
+                style="is-danger",
                 is_pulled_right=True,
                 has_margin_left=True
             )
@@ -51,7 +51,7 @@
             inputs.button(
                 label="Edit",
                 href=url_for("admin.user/edit", user_id=user.id),
-                type="is-info",
+                style="is-info",
                 is_pulled_right=True
             )
         }}

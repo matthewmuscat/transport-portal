@@ -1,5 +1,6 @@
 <!-- Input macros -->
-{% macro switch(id, label, checked=None, is_pulled_right=False) -%}
+{% macro switch(id, label, checked=None,
+                name=None, is_pulled_right=False) -%}
     {% if is_pulled_right %}
         <div class="field is-pulled-right">
     {% else %}
@@ -12,6 +13,9 @@
                     {% if checked %}
                         checked="{{ checked }}"
                     {% endif %}
+                    {% if name %}
+                        name="{{ name }}"
+                    {% endif %}
             >
             <label for="{{ id }}">
                 {{ label }}
@@ -22,7 +26,7 @@
 
 {% macro field(label, type="text", placeholder=None,
                value=None, icon=None, disabled=False,
-               error="") -%}
+               error="", name="") -%}
     <div class="field">
         <label class="label">{{ label }}</label>
         <div
@@ -56,6 +60,10 @@
                     {% if disabled %}
                         disabled
                     {% endif %}
+
+                    {% if name %}
+                        name="{{ name }}"
+                    {% endif %}
             >
             {% if icon %}
                 <span class="icon is-small is-left">
@@ -76,8 +84,8 @@
 {%- endmacro %}
 
 
-{% macro button(label, type, custom_classes=[], href="#", id=None,
-                is_pulled_left=False, is_pulled_right=False,
+{% macro button(label, style, type="button", custom_classes=[], href="#",
+                id=None, is_pulled_left=False, is_pulled_right=False,
                 has_margin_left=False) -%}
 
     <a href={{ href }}>
@@ -85,7 +93,7 @@
             class="
                 button
 
-                {{ type }}
+                {{ style }}
 
                 {% if is_pulled_right %}
                     is-pulled-right
@@ -102,7 +110,11 @@
                 {% endfor %}
             "
             {% if id %}
-                id={{ id }}
+                id={{ id }},
+            {% endif %}
+
+            {% if type %}
+                type={{ type }}
             {% endif %}
         >
             {{ label }}

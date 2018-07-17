@@ -32,12 +32,12 @@ class RouteManager:
 
         # Set up the app and the db
         self.app = app
-        self.db = db
+        self.app.db = db
 
         # Security init (this depends on a working database)
         from app.models.security import Role, User
         user_datastore = SQLAlchemyUserDatastore(db, User, Role)
-        Security(app, user_datastore)
+        self.app.security = Security(app, user_datastore)
 
         # Dynamically load the correct stylesheet based on domain name
         @self.app.context_processor
@@ -70,14 +70,14 @@ class RouteManager:
         self.load_views(self.admin_blueprint, "app/views/admin")
 
         # Load the error handling blueprint
-        self.error_blueprint = Blueprint("error", __name__)
-        self.log.debug(f"Loading Blueprint: {self.main_blueprint.name}")
-        self.load_views(self.error_blueprint, "app/views/error_handlers")
+        # self.error_blueprint = Blueprint("error", __name__)
+        # self.log.debug(f"Loading Blueprint: {self.main_blueprint.name}")
+        # self.load_views(self.error_blueprint, "app/views/error_handlers")
 
         # Register all the blueprints
         self.app.register_blueprint(self.main_blueprint)
         self.app.register_blueprint(self.admin_blueprint)
-        self.app.register_blueprint(self.error_blueprint)
+        # self.app.register_blueprint(self.error_blueprint)
         self.log.debug("")
 
     def run(self):
