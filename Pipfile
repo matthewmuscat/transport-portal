@@ -4,19 +4,17 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-flask = "*"
-rethinkdb = "*"
-requests = "*"
-gunicorn = "*"
-pony = "*"
-flask-security = "*"
-psycopg2-binary = "*"
 bcrypt = "*"
+flask = "*"
+flask-security = "*"
 flask-sqlalchemy = "*"
 flask-moment = "*"
 flask-migrate = "*"
 flask-script = "*"
 flask-mail = "*"
+gunicorn = "*"
+requests = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 "flake8" = "*"
