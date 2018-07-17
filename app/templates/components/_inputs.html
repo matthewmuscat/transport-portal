@@ -20,36 +20,58 @@
 {%- endmacro %}
 
 
-{% macro field(label, type="text", placeholder=None, value=None, icon=None, disabled=False) -%}
+{% macro field(label, type="text", placeholder=None,
+               value=None, icon=None, disabled=False,
+               error="") -%}
     <div class="field">
         <label class="label">{{ label }}</label>
-        {% if icon %}
-            <p class="control has-icons-left">
-        {% else %}
-            <p class="control">
-        {% endif %}
-                <input
-                        class="input"
-                        type="{{ type }}"
-
-                        {% if placeholder %}
-                            placeholder="{{ placeholder }}"
-                        {% endif %}
-
-                        {% if value %}
-                            value="{{ value }}"
-                        {% endif %}
-
-                        {% if disabled %}
-                            disabled
-                        {% endif %}
-                >
+        <div
+            class="
+                control
                 {% if icon %}
-                    <span class="icon is-small is-left">
-                        <i class="fas {{ icon }}"></i>
-                    </span>
+                    has-icons-left
                 {% endif %}
-            </p>
+
+                {% if error %}
+                    has-icons-right
+                {% endif %}
+        ">
+            <input
+                    class="
+                        input
+                        {% if error %}
+                            is-danger
+                        {% endif %}
+                    "
+                    type="{{ type }}"
+
+                    {% if placeholder %}
+                        placeholder="{{ placeholder }}"
+                    {% endif %}
+
+                    {% if value %}
+                        value="{{ value }}"
+                    {% endif %}
+
+                    {% if disabled %}
+                        disabled
+                    {% endif %}
+            >
+            {% if icon %}
+                <span class="icon is-small is-left">
+                    <i class="fas {{ icon }}"></i>
+                </span>
+            {% endif %}
+
+            {% if error %}
+                <span class="icon is-small is-right">
+                  <i class="fas fa-exclamation-triangle"></i>
+                </span>
+            {% endif %}
+        </div>
+        {% if error %}
+            <p class="help is-danger">{{ error }}</p>
+        {% endif %}
     </div>
 {%- endmacro %}
 

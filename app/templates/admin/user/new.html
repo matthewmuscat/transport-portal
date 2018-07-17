@@ -12,60 +12,44 @@
 {% block input_fields %}
 
     <!-- Active -->
-    <div class="field is-pulled-right">
-        <input
-                id="user-active"
-                type="checkbox"
-                class="switch is-rounded is-success"
-        >
-        <label for="user-active">
-            Active
-        </label>
-    </div>
+    {{
+        inputs.switch(
+            id="user-active",
+            label="Active",
+            is_pulled_right=True
+        )
+    }}
 
     <!-- Email -->
-    <div class="field">
-        <label class="label">Email</label>
-        <p class="control has-icons-left">
-            <input
-                    class="input"
-                    type="email"
-                    placeholder="name@email.com"
-            >
-            <span class="icon is-small is-left">
-                <i class="fas fa-envelope"></i>
-            </span>
-        </p>
-    </div>
+    {{
+        inputs.field(
+            label="Email",
+            type="email",
+            placeholder="name@email.com",
+            icon="fa-envelope",
+            error=email_error
+        )
+    }}
 
     <!-- Password -->
-    <div class="field">
-        <label class="label">Password</label>
-        <p class="control has-icons-left">
-            <input
-                    class="input"
-                    type="password"
-            >
-            <span class="icon is-small is-left">
-                <i class="fas fa-key"></i>
-            </span>
-        </p>
-    </div>
+    {{
+        inputs.field(
+            label="Password",
+            type="password",
+            icon="fa-lock",
+            error=password_error
+        )
+    }}
 
     <!-- Group -->
-    <div class="field">
-        <label class="label">Group</label>
-        <p class="control has-icons-left">
-            <input
-                    class="input"
-                    type="text"
-                    placeholder="kpm_transport"
-            >
-            <span class="icon is-small is-left">
-                <i class="fas fa-users"></i>
-            </span>
-        </p>
-    </div>
+    {{
+        inputs.field(
+            label="Group",
+            type="text",
+            placeholder="kpm_transport",
+            icon="fa-users"
+        )
+    }}
 
     <!-- Buttons -->
     <div class="control has-top-space">
