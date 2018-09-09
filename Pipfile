@@ -4,24 +4,15 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-bcrypt = "*"
-flask = "*"
-flask-security = "*"
-flask-sqlalchemy = "*"
-flask-moment = "*"
-flask-migrate = "*"
-flask-script = "*"
-flask-mail = "*"
 gunicorn = "*"
 requests = "*"
 psycopg2-binary = "*"
+Django = "==2.1.1"
 
 [dev-packages]
 "flake8" = "*"
 "flake8-import-order" = "*"
-"Flask-Testing" = "*"
-"pytest" = "*"
-"pytest-cov" = "*"
+"coverage" = "*"
 
 [requires]
 python_version = "3.6"
