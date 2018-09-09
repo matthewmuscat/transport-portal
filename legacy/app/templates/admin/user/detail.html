@@ -1,0 +1,62 @@
+{% extends "components/model_views/_detail.html" %}
+{% import "components/_inputs.html" as inputs %}
+{% import "components/_elements.html" as elements %}
+
+{% block title %}
+    Edit user
+{% endblock %}
+
+{% block headline %}
+    {{ user.email }}
+{% endblock %}
+
+{% block image %}
+    <img
+        src="https://media.gq.com/photos/563bcc296ff00fb522b05308/3:2/w_560/hat-with-suits.jpg"
+        class="is-model-image"
+    >
+{% endblock %}
+
+{% block infobox %}
+
+    <!-- Building a user info dict -->
+    {%-  set user_info = {
+            "Email": user.email,
+            "Group": user.group,
+            "Roles": ", ".join(user.roles),
+            "Active": user.active,
+            "Created": user.confirmed_at or ""
+         }
+    -%}
+
+    <!-- Constructing an infobox with that user info -->
+    {{ elements.infobox(user_info, user.email) }}
+
+    <!-- Buttons below the infobox -->
+    <div class="control has-top-space">
+
+        <!-- Delete button -->
+        {{
+            inputs.button(
+                label="Delete",
+                id="model-delete-button",
+                style="is-danger",
+                is_pulled_right=True,
+                has_margin_left=True
+            )
+        }}
+
+        <!-- Edit button -->
+        {{
+            inputs.button(
+                label="Edit",
+                href=url_for("admin.user/edit", user_id=user.id),
+                style="is-info",
+                is_pulled_right=True
+            )
+        }}
+
+    </div>
+
+
+{% endblock %}

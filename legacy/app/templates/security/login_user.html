@@ -1,0 +1,65 @@
+{% extends "_base.html" %}
+
+{% block user_scripts %}
+    <script src="{{ url_for('static', filename='js/login.js') }}"></script>
+{% endblock %}
+
+{% block user_style %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='scss/brandings/' + domain_name + '/login.css') }}"/>
+{% endblock %}
+
+{% block body %}
+
+    <!-- These are primitives for the curved shape on the left side. -->
+    <div class="login-mask"></div>
+    <div class="left-side-mask"></div>
+
+    <div class="flex-container">
+
+        <!-- Logo side content -->
+        <div class="left-side">
+            <img src="{{ url_for('static', filename='img/logos/' + domain_name + '.png') }}">
+        </div>
+
+        <!-- Form content -->
+        <div class="right-side">
+            <form action="{{ url_for_security('login') }}" method="POST" name="login_user_form">
+                {{ login_user_form.hidden_tag() }}
+                {{ login_user_form.email(id="email", type="field", placeholder="Email") | safe }}
+                {{ login_user_form.password(id="password", type="password", placeholder="Password") | safe }}
+                <label class="checkbox">
+                    {{ login_user_form.remember(id="checkbox", type="checkbox") | safe }}
+                    Remember me
+                </label>
+                {{ login_user_form.submit(id="submit", type="submit", value="Sign in") | safe }}
+
+                <!-- Show errors -->
+                {%- with messages = get_flashed_messages(with_categories=true) -%}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="flashes">
+                                <span class="{{ category }}"> {{ message }} </span>
+                            </div>
+                        {% endfor %}
+                        </ul>
+                    {% endif %}
+                {%- endwith %}
+
+            </form>
+
+        </div>
+    </div>
+
+    {% if security.recoverable %}
+        <h2>Meny</h2>
+        <ul>
+            <li><a href="
+                    {{ url_for_security('login') }}{% if 'next' in request.args %}?next={{ request.args.next|urlencode }}{% endif %}">Log in</a>
+            </li>
+
+            {% if security.recoverable %}
+                <li><a href="{{ url_for_security('forgot_password') }}">Forgot password</a><br/></li>
+            {% endif %}
+        </ul>
+    {% endif %}
+{% endblock %}

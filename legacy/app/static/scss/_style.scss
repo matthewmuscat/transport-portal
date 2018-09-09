@@ -1,0 +1,52 @@
+// boldable navbar links
+a.navbar-item.is-bold {
+  font-weight: bold;
+}
+
+// Spacing for the + New Model button containers
+div.container.buttons-above-table {
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+}
+
+// When hovering table, show pointer instead of cursor
+table.table.has-pointer {
+  cursor: pointer;
+}
+
+// top space for columns and controls
+div.columns.has-top-space,
+div.control.has-top-space {
+  margin-top: 1.5em;
+}
+
+// spacing between buttons
+button.button.has-margin-left {
+  margin-left: 0.5em;
+}
+
+// making rounded switches play well with the form
+div.is-pulled-right input.switch.is-rounded.is-rtl + label {
+  margin-right: 5px;
+}
+
+// making a frame for model images
+img.is-model-image {
+  border: 1px solid #bfbfbf;
+  border-radius: 15px 50px;
+}
+
+// right margin on table cell
+td.has-right-padding {
+  padding-right: 2em;
+}
+
+// green checkmarks
+svg.fa-check-circle {
+  color: #00ba00;
+}
+
+// red x
+svg.fa-times-circle {
+  color: red;
+}

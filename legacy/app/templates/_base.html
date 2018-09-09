@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% block head %}
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">  <!-- Required by Bulma -->
+            {% block user_style %}
+                <link rel="stylesheet" href="{{ url_for('static', filename='scss/brandings/' + domain_name + '/main.css') }}"/>
+            {% endblock %}
+            <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+            <script
+			  src="https://code.jquery.com/jquery-3.3.1.min.js"
+			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+			  crossorigin="anonymous"></script>
+            {% block user_scripts %}
+                <script defer src="{{ url_for('static', filename='js/main.js') }}"></script>
+            {% endblock %}
+            <title>{% block title %}{% endblock %}</title>
+        {% endblock %}
+    </head>
+
+    <body>
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>

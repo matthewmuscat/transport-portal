@@ -1,0 +1,35 @@
+{% extends "_base.html" %}
+
+{% block title %}
+    Users
+{% endblock %}
+
+{% block body %}
+
+    <!-- Navbar -->
+    {% include "components/_navbar.html" %}
+
+    <div class="columns has-top-space">
+
+        <!-- Spacer flexbox on the left -->
+        <div class="column"></div>
+
+        <!-- Content flexbox -->
+        <div class="column is-one-quarter">
+
+            <!-- Headline -->
+            <h1 class="title">
+                {% block headline %}
+                    No headline
+                {% endblock %}
+            </h1>
+
+            <!-- Input fields -->
+            {% block input_fields %}
+            {% endblock %}
+        </div>
+
+        <!-- Spacer flexbox on the right -->
+        <div class="column"></div>
+    </div>
+{% endblock %}

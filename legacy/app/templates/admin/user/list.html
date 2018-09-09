@@ -1,0 +1,51 @@
+{% extends "components/model_views/_list.html" %}
+
+<!-- Page title -->
+{% block title %}
+    Users
+{% endblock %}
+
+<!-- Button text for creating a new item -->
+{% block new_model_text %}
+    + New user
+{% endblock %}
+
+<!-- Button URL href for creating a new item -->
+{% block new_model_url %}
+    {{ url_for("admin.user/new") }}
+{% endblock %}
+
+{% block table_data %}
+
+    <!-- Table headers -->
+    <tr>
+        <th class="is-hidden">ID</th>
+        <th>Email</th>
+        <th>Group</th>
+        <th>Active</th>
+        <th>Active since</th>
+        <th>Roles</th>
+    </tr>
+
+    <!-- Table data -->
+    {% for user in users %}
+        <tr>
+            <td class="is-hidden">{{ user.id }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.group }}</td>
+            <td>
+                {% if user.active %}
+                    <i class="fas fa-check-circle"></i>
+                {% else %}
+                    <i class="fas fa-times-circle"></i>
+                {% endif %}
+            </td>
+            <td>{{ user.confirmed_at }}</td>
+            <td>{{ ", ".join(user.roles) }}</td>
+        </tr>
+    {% endfor %}
+{% endblock %}
+
+
+
+

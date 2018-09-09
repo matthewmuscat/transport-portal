@@ -1,0 +1,13 @@
+@import '_colors';
+@import '../../bulma/sass/utilities/initial-variables';
+@import "../../bulma/sass/utilities/functions";
+
+// Override the Bulma primary color
+$primary: $primary-color;
+$primary-invert: findColorInvert($primary-color);
+
+@import '../../bulma/bulma';
+@import '../../bulma/sass/extensions/_all';
+@import '../../_style';
+
+
