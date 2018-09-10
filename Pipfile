@@ -7,7 +7,7 @@ name = "pypi"
 gunicorn = "*"
 requests = "*"
 psycopg2-binary = "*"
-Django = "==2.1.1"
+django = "==2.1.1"
 
 [dev-packages]
 "flake8" = "*"
@@ -18,9 +18,9 @@ Django = "==2.1.1"
 python_version = "3.6"
 
 [scripts]
-start     = "gunicorn --preload -w 12 -b 0.0.0.0:10013 portal:app"
+start     = "gunicorn --preload -w 12 -b 0.0.0.0:10013 portal.wsgi"
 lint      = "python -m flake8"
-test      = "py.test tests --cov app --cov-report term-missing -v"
+test      = "python manage.py test"
 clean     = "rm -rf __pycache__ htmlcov .coverage .pytest_cache"
 build     = "docker build -t heavysaturn/transport-portal:latest -f docker/Dockerfile ."
 push      = "docker push heavysaturn/transport-portal:latest"
