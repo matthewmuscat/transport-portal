@@ -22,7 +22,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'w2q!+v1!b_3v*m+ikj8$_%anhrnn&a35w+mck$pk*ynzi&dujo'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(os.environ.get("DEBUG", False))
+# DEBUG = bool(os.environ.get("DEBUG", False))
+DEBUG = True
 ALLOWED_HOSTS = ["portal.kpmtransport.no", "localhost", "127.0.0.1"]
 APPEND_SLASH = True
 
