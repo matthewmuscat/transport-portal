@@ -18,6 +18,7 @@ django = "==2.1.1"
 python_version = "3.6"
 
 [scripts]
+start          = "gunicorn --preload -w 12 -b 0.0.0.0:10013 portal.wsgi"
 lint           = "python -m flake8"
 makemigrations = "python manage.py makemigrations"
 showmigrations = "python manage.py showmigrations"
