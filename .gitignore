@@ -109,3 +109,6 @@ rethinkdb_data/
 
 # Alembic
 migrations/
+
+# Local database
+db.sqlite3
