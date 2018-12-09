@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}title{% endblock %}</title>
+        <!-- Import FontAwesome and Bulma for styling -->
+        <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css">
+    </head>
+
+    <body>
+       <div id="content">
+            {% block content %}{% endblock %}
+        </div>
+    </body>
+</html>

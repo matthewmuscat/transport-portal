@@ -1,9 +1,9 @@
-from django.http import HttpResponse
+from django.shortcuts import render
 
 
-def discrepancies(request):
-    return HttpResponse('<h1>DISCREPANCIES FORM.</h1>')
+def report(request):
+    return render(request, "forms/report.html")
 
 
 def checkout(request):
-    return HttpResponse('<h1>CHECKOUT FORM.</h1>')
+    return render(request, "forms/checkout.html")
