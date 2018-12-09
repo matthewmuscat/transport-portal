@@ -3,5 +3,5 @@
 {% block title %}Checkout form{% endblock %}
 
 {% block content %}
-You must enter the form data into the bladderneck
+{% crispy checkout_form checkout_form.helper %}
 {% endblock %}

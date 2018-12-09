@@ -1,0 +1,7 @@
+{% extends "forms/base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}Report form{% endblock %}
+
+{% block content %}
+{% crispy report_form report_form.helper %}
+{% endblock %}
