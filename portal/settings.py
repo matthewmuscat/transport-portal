@@ -31,7 +31,7 @@ APPEND_SLASH = True
 
 # Application definition
 INSTALLED_APPS = [
-    'plugins.crispy_forms_bulma.apps.CrispyFormsBulmaConfig',
+    'plugins.crispy_bulma.apps.CrispyFormsBulmaConfig',
     'crispy_forms',
     'asset_manager.apps.AssetManagerConfig',
     'driver_forms.apps.FormsConfig',
