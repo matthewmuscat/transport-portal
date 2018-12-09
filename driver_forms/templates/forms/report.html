@@ -1,7 +1,10 @@
 {% extends "forms/base.html" %}
 {% load crispy_forms_tags %}
-{% block title %}Report form{% endblock %}
+{% block title %}Report Form{% endblock %}
+{% block form_name %}Report Form{% endblock %}
 
 {% block content %}
-{% crispy report_form report_form.helper %}
+    <div class="column is-4 is-offset-4">
+        {% crispy report_form report_form.helper %}
+    </div>
 {% endblock %}

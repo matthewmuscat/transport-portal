@@ -1,14 +1,25 @@
+{%  load static %}
 <!DOCTYPE html>
 <html>
     <head>
         <title>{% block title %}title{% endblock %}</title>
+
         <!-- Import FontAwesome and Bulma for styling -->
         <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css">
     </head>
 
     <body>
+
        <div id="content">
+            <div class="column is-4 is-offset-4 has-text-centered has-text-bold is-size-4">
+                <div class="image is-small">
+                    <img src="{% static "img/logos/kpmtransport_black.png" %}">
+                </div>
+                {% block form_name %}Some sort of form{% endblock %}
+                <hr style="margin-top:0px">
+            </div>
+
             {% block content %}{% endblock %}
         </div>
     </body>

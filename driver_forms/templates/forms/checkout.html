@@ -1,7 +1,10 @@
 {% extends "forms/base.html" %}
 {% load crispy_forms_tags %}
-{% block title %}Checkout form{% endblock %}
+{% block title %}Checkout Form{% endblock %}
+{% block form_name %}Checkout Form{% endblock %}
 
 {% block content %}
-{% crispy checkout_form checkout_form.helper %}
+    <div class="column is-4 is-offset-4">
+        {% crispy checkout_form checkout_form.helper %}
+    </div>
 {% endblock %}
