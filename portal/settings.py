@@ -29,6 +29,8 @@ APPEND_SLASH = True
 
 # Application definition
 INSTALLED_APPS = [
+    'asset_manager.apps.AssetManagerConfig',
+    'forms.apps.FormsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
