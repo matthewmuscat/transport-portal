@@ -2,6 +2,7 @@ body {
     FontFamily:BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif
 }
 
-input.form-control {
-    width: 30%;
+input.form-control, textarea.form-control {
+    max-width: 350px;
+    min-width: 20%;
 }
