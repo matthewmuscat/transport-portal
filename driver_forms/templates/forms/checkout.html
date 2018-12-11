@@ -1,7 +1,11 @@
 {% extends "forms/base.html" %}
+{% load staticfiles %}
 {% load crispy_forms_tags %}
 {% block title %}Checkout Form{% endblock %}
 {% block form_name %}Checkout Form{% endblock %}
+{% block head %}
+    <script src="{% static 'js/checkout_form.js' %}"></script>
+{% endblock %}
 
 {% block content %}
     <div class="column is-4 is-offset-4">
