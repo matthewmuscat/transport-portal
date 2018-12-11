@@ -2,6 +2,7 @@ from crispy_forms.bootstrap import InlineRadios
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Div, Field, HTML, Layout, Submit
 from django import forms
+from django.urls import reverse
 
 
 class CheckoutForm(forms.Form):
@@ -21,7 +22,9 @@ class CheckoutForm(forms.Form):
     main_light_input = forms.CharField(
         label="Describe any damage on the main lights",
         widget=forms.Textarea(attrs={"rows": "3"}),
-        required=False
+    )
+    main_light_upload = forms.ImageField(
+        label="Upload an image which shows the damage"
     )
 
     # Check brake lights
@@ -33,7 +36,9 @@ class CheckoutForm(forms.Form):
     brake_light_input = forms.CharField(
         label="Describe any damage on the brake lights",
         widget=forms.Textarea(attrs={"rows": "3"}),
-        required=False
+    )
+    brake_light_upload = forms.ImageField(
+        label="Upload an image which shows the damage"
     )
 
     # Check indicator lights
@@ -45,7 +50,9 @@ class CheckoutForm(forms.Form):
     indicator_light_input = forms.CharField(
         label="Describe any damage on the indicator lights",
         widget=forms.Textarea(attrs={"rows": "3"}),
-        required=False
+    )
+    indicator_light_upload = forms.ImageField(
+        label="Upload an image which shows the damage"
     )
 
     # Check if there are any warning lights in the display
@@ -57,7 +64,9 @@ class CheckoutForm(forms.Form):
     warning_light_input = forms.CharField(
         label="Describe the warnings that are shown in the display",
         widget=forms.Textarea(attrs={"rows": "3"}),
-        required=False
+    )
+    warning_light_upload = forms.ImageField(
+        label="Upload an image of the display which shows the warnings"
     )
 
     # Check tires
@@ -69,7 +78,9 @@ class CheckoutForm(forms.Form):
     tire_input = forms.CharField(
         label="Describe any damage on the tires",
         widget=forms.Textarea(attrs={"rows": "3"}),
-        required=False
+    )
+    tire_upload = forms.ImageField(
+        label="Upload an image of the damage"
     )
 
     # Check for other visible damage
@@ -80,8 +91,10 @@ class CheckoutForm(forms.Form):
     )
     visible_damage_input = forms.CharField(
         label="Describe the damage",
-        widget=forms.Textarea(attrs={"rows": "3"}),
-        required=False
+        widget=forms.Textarea(attrs={"rows": "3"})
+    )
+    visible_damage_upload = forms.ImageField(
+        label="Upload an image which shows the damage"
     )
 
     # EQUIPMENT CHECKS #
@@ -94,32 +107,32 @@ class CheckoutForm(forms.Form):
 
     # Ferry card
     ferry_card_check = forms.ChoiceField(
-        label="Is the ferry card present in the vehicle",
+        label="Is there a ferry card in the vehicle?",
         choices=[("Y", "Yes"), ("N", "No")],
+        required=True
+    )
+    ferry_card_input = forms.CharField(
+        label="How much credit is left on the ferry card?",
         required=True
     )
 
     # Diesel card present
     diesel_card_check = forms.ChoiceField(
-        label="Is the diesel card present in the vehicle",
+        label="Is the correct diesel card in the vehicle?",
         choices=[("Y", "Yes"), ("N", "No")],
-        required=True
-    )
-    diesel_card_input = forms.CharField(
-        label="How much is left on the diesel card?",
         required=True
     )
 
     # Vehicle registration
     vehicle_registration_check = forms.ChoiceField(
-        label="Is the vehicle registration present in the vehicle",
+        label="Is the vehicle registration in the vehicle?",
         choices=[("Y", "Yes"), ("N", "No")],
         required=True
     )
 
     # Transportation permit
     transport_permit_check = forms.ChoiceField(
-        label="Is the transport permit (ECMT) present in the vehicle",
+        label="Is the transport permit (ECMT) in the vehicle?",
         choices=[("Y", "Yes"), ("N", "No")],
         required=True
     )
@@ -149,18 +162,29 @@ class CheckoutForm(forms.Form):
                 # Light checks
                 InlineRadios("main_light_check"),
                 Field("main_light_input", css_class="popup"),
+                Field("main_light_upload", css_class="popup"),
+
                 InlineRadios("brake_light_check"),
                 Field("brake_light_input", css_class="popup"),
+                Field("brake_light_upload", css_class="popup"),
+
                 InlineRadios("indicator_light_check"),
                 Field("indicator_light_input", css_class="popup"),
+                Field("indicator_light_upload", css_class="popup"),
+
                 InlineRadios("warning_light_check"),
                 Field("warning_light_input", css_class="popup"),
+                Field("warning_light_upload", css_class="popup"),
 
                 # Damage checks
                 InlineRadios("tire_check"),
                 Field("tire_input", css_class="popup"),
+                Field("tire_upload", css_class="popup"),
+
                 InlineRadios("visible_damage_check"),
                 Field("visible_damage_input", css_class="popup"),
+                Field("visible_damage_upload", css_class="popup"),
+
                 css_id="vehicle-checks"
             ),
 
@@ -169,9 +193,9 @@ class CheckoutForm(forms.Form):
                 HTML(
                     "<br></br>" + header.format(text="Equipment Checks")
                 ),
-                InlineRadios("ferry_card_check"),
                 InlineRadios("diesel_card_check"),
-                Field("diesel_card_input", css_class="popup"),
+                InlineRadios("ferry_card_check"),
+                Field("ferry_card_input", css_class="popup"),
                 InlineRadios("vehicle_registration_check"),
                 InlineRadios("transport_permit_check"),
                 css_id="equipment-checks"
@@ -181,7 +205,7 @@ class CheckoutForm(forms.Form):
         self.helper.form_id = 'checkoutform'
         self.helper.form_class = 'control'
         self.helper.form_method = 'post'
-        self.helper.form_action = 'forms_checkout'  # Should correspond with the url, ie: /forms/checkout
+        self.helper.form_action = reverse('checkout')
 
         submit = Submit('submit', 'Submit')
         submit.field_classes = "button is-link"

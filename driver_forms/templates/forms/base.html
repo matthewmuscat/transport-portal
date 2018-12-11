@@ -41,16 +41,18 @@
 
     <body>
 
-       <div id="content">
-            <div class="column is-4 is-offset-4 has-text-centered has-text-bold is-size-4">
-                <div class="image is-small">
-                    <img src="{% static "img/logos/kpmtransport_black.png" %}">
-                </div>
-                {% block form_name %}Some sort of form{% endblock %}
-                <hr style="margin-top:0px">
+       <div id="container-fluid">
+            <div class="img-fluid text-center">
+                <img style="max-width: 200px" src="{% static "img/logos/kpmtransport_black.png" %}">
+            </div>
+            <div class="text-center">
+                <strong>{% block form_name %}Some sort of form{% endblock %}</strong>
+            </div>
+            <hr style="margin-top:0px">
+            <div class="mx-2">
+                {% block content %}{% endblock %}
             </div>
 
-            {% block content %}{% endblock %}
         </div>
     </body>
 </html>

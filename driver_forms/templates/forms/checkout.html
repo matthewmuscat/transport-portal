@@ -8,7 +8,5 @@
 {% endblock %}
 
 {% block content %}
-    <div class="column is-4 is-offset-4">
-        {% crispy checkout_form checkout_form.helper %}
-    </div>
+    {% crispy checkout_form checkout_form.helper %}
 {% endblock %}
