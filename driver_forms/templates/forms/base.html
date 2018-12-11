@@ -3,6 +3,7 @@
 <html>
     <head>
         <title>{% block title %}title{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <!-- Import FontAwesome and Bootstrap4 for styling -->
         <link
@@ -41,7 +42,7 @@
 
     <body>
 
-       <div id="container-fluid">
+       <div id="container">
             <div class="img-fluid text-center">
                 <img style="max-width: 200px" src="{% static "img/logos/kpmtransport_black.png" %}">
             </div>
@@ -49,7 +50,7 @@
                 <strong>{% block form_name %}Some sort of form{% endblock %}</strong>
             </div>
             <hr style="margin-top:0px">
-            <div class="mx-2">
+            <div class="mx-3">
                 {% block content %}{% endblock %}
             </div>
 
