@@ -114,4 +114,5 @@ migrations/
 db.sqlite3
 
 # ignore staticfiles, we'll build these locally
-staticfiles/
+staticfiles/*
+!staticfiles/.keep
