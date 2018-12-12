@@ -27,6 +27,23 @@ DEBUG = bool(os.environ.get("DEBUG", False))
 ALLOWED_HOSTS = ["portal.kpmtransport.no", "forms.kpmtransport.no", "localhost", "127.0.0.1"]
 APPEND_SLASH = True
 
+# Logging
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler'
+        },
+    },
+    'loggers': {
+        '': {  # 'catch all' loggers by referencing it with the empty string
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+    },
+}
+
 # Application definition
 INSTALLED_APPS = [
     'crispy_forms',

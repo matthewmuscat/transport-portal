@@ -113,6 +113,6 @@ migrations/
 # Local database
 db.sqlite3
 
-# ignore staticfiles, we'll build these locally
+# ignore files in staticfiles, but keep the folder in the repo. we'll build the files locally
 staticfiles/*
 !staticfiles/.keep
