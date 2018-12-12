@@ -112,3 +112,6 @@ migrations/
 
 # Local database
 db.sqlite3
+
+# ignore staticfiles, we'll build these locally
+staticfiles/
