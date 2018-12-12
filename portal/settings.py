@@ -22,14 +22,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'w2q!+v1!b_3v*m+ikj8$_%anhrnn&a35w+mck$pk*ynzi&dujo'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = bool(os.environ.get("DEBUG", False))
-DEBUG = True
+DEBUG = bool(os.environ.get("DEBUG", False))
+# DEBUG = True
 ALLOWED_HOSTS = ["portal.kpmtransport.no", "forms.kpmtransport.no", "localhost", "127.0.0.1"]
 APPEND_SLASH = True
 
 # Application definition
 INSTALLED_APPS = [
-    'plugins.crispy_bulma.apps.CrispyBulmaConfig',
     'crispy_forms',
     'asset_manager.apps.AssetManagerConfig',
     'driver_forms.apps.FormsConfig',
@@ -43,6 +42,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -110,10 +110,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 STATIC_URL = '/static/'
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, 'static')
 ]
+
 
 # Crispy settings
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

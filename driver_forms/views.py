@@ -17,7 +17,7 @@ class Checkout(View):
     def post(self, request):
         form = CheckoutForm(request.POST, request.FILES)
         if form.is_valid():
-            print(dict(request.POST))
+            print()
             print(request.FILES)
 
         else:

@@ -13,4 +13,5 @@ EXPOSE 10013
 
 # Make tini the default command handler, and run the pipenv script called start.
 ENTRYPOINT ["/sbin/tini", "--"]
+CMD ["pipenv", "run", "collectstatic"]
 CMD ["pipenv", "run", "start"]
