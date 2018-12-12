@@ -7,11 +7,11 @@ WORKDIR /portal
 # Set up the virtual environment
 RUN pipenv clean
 RUN pipenv sync
+RUN chmod +x scripts/start_app.sh
 
 # Open the port that nginx will communicate through
 EXPOSE 10013
 
 # Make tini the default command handler, and run the pipenv script called start.
 ENTRYPOINT ["/sbin/tini", "--"]
-CMD ["pipenv", "run", "collectstatic"]
-CMD ["pipenv", "run", "start"]
+CMD ["./scripts/start_app.sh"]
