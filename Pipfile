@@ -13,7 +13,6 @@ django-hosts = "*"
 pillow = "*"
 mailer = "*"
 whitenoise = "*"
-yagmail = "*"
 
 [dev-packages]
 "flake8" = "*"

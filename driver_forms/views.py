@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.template import Context
+from django.template.loader import get_template
 from django.views import View
 from driver_forms.forms import CheckoutForm, ReportForm
 
@@ -17,7 +19,11 @@ class Checkout(View):
     def post(self, request):
         form = CheckoutForm(request.POST, request.FILES)
         if form.is_valid():
-            print(request.FILES)
+
+            # Build an email
+            html_template = get_template("forms/email.html")
+            context = Context({"balls": "node", "fire": "proof"})
+            html_email = html_template.render(context)  # noqa
 
         else:
             print(f"is_valid() failed; The form has encountered the following errors:\n{form.errors}")

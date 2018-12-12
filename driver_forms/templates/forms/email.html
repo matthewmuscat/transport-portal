@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout report</title>
+</head>
+<body>
+    {% for field, data in form_data.items %}
+        <strong>{{ field }}</strong>: {{ data }}
+    {% endfor %}
+</body>
+</html>
