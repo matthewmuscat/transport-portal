@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "935982b33c6523660930a69fa55a4622ef426bcd5a499185d7310b288897b118"
+            "sha256": "ced48fa07dc971165362fa1b186f38bcf03a208684b3ee16b9dde0ad0f14add9"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -198,6 +198,14 @@
             ],
             "index": "pypi",
             "version": "==4.1.2"
+        },
+        "yagmail": {
+            "hashes": [
+                "sha256:41a19198a60f454628b1fb948d1f8b38ddeea5802f677699c3ce5265e3d9f748",
+                "sha256:a93efe034ef83e32a17c8888c5eec1568f7350a5918199548d31fff643bee83e"
+            ],
+            "index": "pypi",
+            "version": "==0.11.214"
         }
     },
     "develop": {
