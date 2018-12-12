@@ -22,9 +22,11 @@ class CheckoutForm(forms.Form):
     main_light_input = forms.CharField(
         label="Describe any damage on the main lights",
         widget=forms.Textarea(attrs={"rows": "3"}),
+        required=False
     )
     main_light_upload = forms.ImageField(
-        label="Upload an image which shows the damage"
+        label="Upload an image which shows the damage",
+        required=False
     )
 
     # Check brake lights
@@ -36,9 +38,11 @@ class CheckoutForm(forms.Form):
     brake_light_input = forms.CharField(
         label="Describe any damage on the brake lights",
         widget=forms.Textarea(attrs={"rows": "3"}),
+        required=False
     )
     brake_light_upload = forms.ImageField(
-        label="Upload an image which shows the damage"
+        label="Upload an image which shows the damage",
+        required=False
     )
 
     # Check indicator lights
@@ -50,9 +54,11 @@ class CheckoutForm(forms.Form):
     indicator_light_input = forms.CharField(
         label="Describe any damage on the indicator lights",
         widget=forms.Textarea(attrs={"rows": "3"}),
+        required=False
     )
     indicator_light_upload = forms.ImageField(
-        label="Upload an image which shows the damage"
+        label="Upload an image which shows the damage",
+        required=False
     )
 
     # Check if there are any warning lights in the display
@@ -64,9 +70,11 @@ class CheckoutForm(forms.Form):
     warning_light_input = forms.CharField(
         label="Describe the warnings that are shown in the display",
         widget=forms.Textarea(attrs={"rows": "3"}),
+        required=False
     )
     warning_light_upload = forms.ImageField(
-        label="Upload an image of the display which shows the warnings"
+        label="Upload an image of the display which shows the warnings",
+        required=False
     )
 
     # Check tires
@@ -78,9 +86,11 @@ class CheckoutForm(forms.Form):
     tire_input = forms.CharField(
         label="Describe any damage on the tires",
         widget=forms.Textarea(attrs={"rows": "3"}),
+        required=False
     )
     tire_upload = forms.ImageField(
-        label="Upload an image of the damage"
+        label="Upload an image of the damage",
+        required=False
     )
 
     # Check for other visible damage
@@ -91,10 +101,12 @@ class CheckoutForm(forms.Form):
     )
     visible_damage_input = forms.CharField(
         label="Describe the damage",
-        widget=forms.Textarea(attrs={"rows": "3"})
+        widget=forms.Textarea(attrs={"rows": "3"}),
+        required=False
     )
     visible_damage_upload = forms.ImageField(
-        label="Upload an image which shows the damage"
+        label="Upload an image which shows the damage",
+        required=False
     )
 
     # EQUIPMENT CHECKS #
@@ -113,7 +125,7 @@ class CheckoutForm(forms.Form):
     )
     ferry_card_input = forms.CharField(
         label="How much credit is left on the ferry card?",
-        required=True
+        required=False
     )
 
     # Diesel card present

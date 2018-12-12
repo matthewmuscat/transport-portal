@@ -9,6 +9,7 @@ requests = "*"
 psycopg2-binary = "*"
 django = "*"
 django-crispy-forms = "*"
+pillow = "*"
 
 [dev-packages]
 "flake8" = "*"
