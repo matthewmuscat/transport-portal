@@ -24,7 +24,14 @@ SECRET_KEY = 'w2q!+v1!b_3v*m+ikj8$_%anhrnn&a35w+mck$pk*ynzi&dujo'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(os.environ.get("DEBUG", False))
 # DEBUG = True
-ALLOWED_HOSTS = ["portal.kpmtransport.no", "forms.kpmtransport.no", "localhost", "127.0.0.1"]
+ALLOWED_HOSTS = [
+    "portal.kpmtransport.no",
+    "forms.kpmtransport.no",
+    "portal.kpmtransport.local",
+    "forms.kpmtransport.local",
+    "localhost",
+    "127.0.0.1"
+]
 APPEND_SLASH = True
 
 # Logging
@@ -47,6 +54,7 @@ LOGGING = {
 # Application definition
 INSTALLED_APPS = [
     'crispy_forms',
+    'django_hosts',
     'asset_manager.apps.AssetManagerConfig',
     'driver_forms.apps.FormsConfig',
     'django.contrib.admin',
@@ -58,6 +66,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'django_hosts.middleware.HostsRequestMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -66,9 +75,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_hosts.middleware.HostsResponseMiddleware',
 ]
 
-ROOT_URLCONF = 'portal.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -115,6 +124,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# URLs
+ROOT_URLCONF = 'portal.urls'
+ROOT_HOSTCONF = 'portal.hosts'
+DEFAULT_HOST = 'portal'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
@@ -132,7 +145,6 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
-
 
 # Crispy settings
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
