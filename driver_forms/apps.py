@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class FormsConfig(AppConfig):
-    name = 'forms'
+    name = 'driver_forms'
