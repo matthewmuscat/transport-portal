@@ -1,8 +1,0 @@
-{% extends "forms/email_base.html" %}
-{% block title %}Checkout form{% endblock %}
-
-{% block content %}
-    {% for field, data in form_data.items %}
-        <strong>{{ field }}</strong>: {{ data }} <br>
-    {% endfor %}
-{% endblock %}

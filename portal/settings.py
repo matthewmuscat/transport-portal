@@ -56,7 +56,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django_hosts',
     'asset_manager.apps.AssetManagerConfig',
-    'driver_forms.apps.FormsConfig',
+    'forms.apps.FormsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
