@@ -40,14 +40,15 @@ def send_mail(send_to, subject, html, send_from=USERNAME,
     msg.attach(html_message)
 
     # Attach any attachments
-    for attachment in attachments.values():
-        part = MIMEApplication(
-            attachment.read(),
-            Name=attachment.name,
-            _subtype=attachment.content_type
-        )
-        part['Content-Disposition'] = f"attachment; filename={attachment.name}"
-        msg.attach(part)
+    if attachments:
+        for attachment in attachments.values():
+            part = MIMEApplication(
+                attachment.read(),
+                Name=attachment.name,
+                _subtype=attachment.content_type
+            )
+            part['Content-Disposition'] = f"attachment; filename={attachment.name}"
+            msg.attach(part)
 
     # Send the mail
     smtp = smtplib.SMTP(server, int(port))
