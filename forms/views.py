@@ -2,7 +2,7 @@ import datetime
 
 from django.shortcuts import render
 from django.views import View
-from driver_forms.forms import CheckoutForm, ReportForm
+from forms.forms import CheckoutForm, ReportForm
 from utils.email import send_mail_from_template
 
 
