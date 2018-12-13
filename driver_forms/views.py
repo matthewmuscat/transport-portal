@@ -1,8 +1,7 @@
 from django.shortcuts import render
-from django.template import Context
-from django.template.loader import get_template
 from django.views import View
 from driver_forms.forms import CheckoutForm, ReportForm
+from utils.email import send_mail_from_template
 
 
 class Report(View):
@@ -19,11 +18,13 @@ class Checkout(View):
     def post(self, request):
         form = CheckoutForm(request.POST, request.FILES)
         if form.is_valid():
-
-            # Build an email
-            html_template = get_template("forms/email.html")
-            context = Context({"balls": "node", "fire": "proof"})
-            html_email = html_template.render(context)  # noqa
+            send_mail_from_template(
+                send_to="leon.haland@gmail.com",
+                subject="Testdongle!",
+                template_path="forms/email_checkout.html",
+                context={"form_data": request.POST},
+                attachments=request.FILES or None
+            )
 
         else:
             print(f"is_valid() failed; The form has encountered the following errors:\n{form.errors}")
