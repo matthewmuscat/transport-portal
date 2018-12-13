@@ -10,11 +10,11 @@ from django.template.loader import get_template
 
 USERNAME = os.environ.get("MAIL_USER")
 PASSWORD = os.environ.get("MAIL_PASS")
-FROM = os.environ.get("MAIL_FROM")
-SERVER = os.environ.get("MAIL_SERVER")
 
 
-def send_mail(send_to, subject, html, attachments: dict = None, port=587, tls=True):
+def send_mail(send_to, subject, html, send_from=USERNAME,
+              server="smtp.office365.com", attachments: dict = None,
+              port=587, tls=True):
     """
     Sends an html email using smtplib.
 
@@ -24,7 +24,7 @@ def send_mail(send_to, subject, html, attachments: dict = None, port=587, tls=Tr
 
     # Set up the message
     msg_root = MIMEMultipart('related')
-    msg_root['From'] = FROM
+    msg_root['From'] = send_from
     msg_root['To'] = (send_to if isinstance(send_to, str) else COMMASPACE.join(send_to))
     msg_root['Date'] = formatdate(localtime=True)
     msg_root['Subject'] = Header(subject, 'utf-8')
@@ -50,7 +50,7 @@ def send_mail(send_to, subject, html, attachments: dict = None, port=587, tls=Tr
         msg.attach(part)
 
     # Send the mail
-    smtp = smtplib.SMTP(SERVER, int(port))
+    smtp = smtplib.SMTP(server, int(port))
 
     if tls:
         smtp.starttls()
@@ -58,7 +58,7 @@ def send_mail(send_to, subject, html, attachments: dict = None, port=587, tls=Tr
     if USERNAME is not None:
         smtp.login(USERNAME, PASSWORD)
 
-    smtp.sendmail(FROM, send_to, msg_root.as_string())
+    smtp.sendmail(send_from, send_to, msg_root.as_string())
     smtp.quit()
 
 
