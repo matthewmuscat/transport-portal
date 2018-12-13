@@ -2,7 +2,65 @@
 {% block title %}Checkout form{% endblock %}
 
 {% block content %}
-    {% for field, data in form_data.items %}
-        <strong>{{ field }}</strong>: {{ data }} <br>
-    {% endfor %}
+
+    <!-- Show the driver info -->
+    <h2>Driver and vehicle info</h2>
+    <table>
+        {% for field, data in general_info.items %}
+            <tr>
+                <td style="padding-right: 15px;">
+                    <strong>{{ field }}</strong>
+                </td>
+                <td>
+                    {% if data == "✔" %}
+                        <span style="color:green">{{ data }}</span>
+                    {% elif data == "✖" %}
+                        <span style="color:red">{{ data }}</span>
+                    {% else %}
+                        {{ data }}
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <h2>Vehicle checks</h2>
+    <table>
+        <!-- Show all the vehicle check fields -->
+        {% for field, data in vehicle_check.items %}
+            <tr>
+                <td style="padding-right: 15px;">
+                    <strong>{{ field }}</strong>
+                </td>
+                <td>
+                    {% if data == "✔" %}
+                        <span style="color:green">{{ data }}</span>
+                    {% elif data == "✖" %}
+                        <span style="color:red">{{ data }}</span>
+                    {% else %}
+                        {{ data }}
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <h2>Equipment checks</h2>
+    <table>
+        <!-- Show all equipment check fields -->
+        {% for field, data in equipment_check.items %}
+            <tr>
+                <td style="padding-right: 15px;">
+                    <strong>{{ field }}</strong>
+                </td>
+                <td>
+                    {% if data == "✔" %}
+                        <span style="color:green">{{ data }}</span>
+                    {% elif data == "✖" %}
+                        <span style="color:red">{{ data }}</span>
+                    {% else %}
+                        {{ data }}
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
 {% endblock %}
