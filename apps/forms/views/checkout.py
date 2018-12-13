@@ -1,15 +1,10 @@
 import datetime
 
-from apps.forms.forms import CheckoutForm, ReportForm
+from apps.forms.forms import CheckoutForm
+from django.contrib import messages
 from django.shortcuts import render
 from django.views import View
 from utils.email import send_mail_from_template
-
-
-class Report(View):
-    def get(self, request):
-        form = ReportForm()
-        return render(request, "forms/report.html", {"report_form": form})
 
 
 class Checkout(View):
@@ -95,14 +90,15 @@ class Checkout(View):
             today = datetime.date.today().strftime("%d. %B %Y")
             subject = f"Checkout report, {today}: {request.POST['name']} - {request.POST['license_car']}"
             send_mail_from_template(
-                send_to="leon.haland@gmail.com",
+                send_to="kurt@kpmtransport.no",
                 subject=subject,
                 template_path="forms/email_checkout.html",
                 context=self._process(request.POST, form),
                 attachments=request.FILES or None
             )
+            messages.add_message(request, messages.SUCCESS, 'Form successfully submitted!')
 
         else:
             print(f"is_valid() failed; The form has encountered the following errors:\n{form.errors}")
 
-        return render(request, "forms/checkout.html", {"checkout_form": form})
+        return render(request, "forms/checkout.html", {"checkout_form": CheckoutForm()})
